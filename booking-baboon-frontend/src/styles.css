@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Poppins, "Helvetica Neue", sans-serif; }
+
+
+:root {
+  --custom-primary: #f7a12e;
+  --custom-accent: #e9251e;
+  --custom-warn: #FF5722;
+}
+
+body {
+  --primary: var(--custom-primary);
+  --accent: var(--custom-accent);
+  --warn: var(--custom-warn);
+}
+
+button{
+  font-family: Poppins, "Helvetica Neue", sans-serif;
+}
+
+@font-face {
+  font-family: 'Bangers';
+  src: url("assets/Bangers-Regular.ttf");
+}
+
+

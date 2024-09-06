@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<div class="background-img">
+  <div class="wrapper">
+    <app-navbar> </app-navbar>
+    <div class="content">
+      <h2>My accommodations</h2>
+      <button mat-raised-button [routerLink]="['/host/accommodations/create']" ><b>Add accommodation</b><mat-icon>add</mat-icon></button>
+      <mat-divider></mat-divider>
+      <app-host-accommodation-cards></app-host-accommodation-cards>
+    </div>
+
+  </div>
+</div>
+

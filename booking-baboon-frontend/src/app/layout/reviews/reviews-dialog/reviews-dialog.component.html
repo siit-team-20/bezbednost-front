@@ -1,0 +1,13 @@
+<div id="overlay">
+  <div id="reviews-box">
+    <div id="title-section">
+      <h2>Reviews</h2>
+      <div class="expand"></div>
+      <div id="close-icon" (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <hr>
+    <app-review-cards [reviews]="reviews"></app-review-cards>
+  </div>
+</div>

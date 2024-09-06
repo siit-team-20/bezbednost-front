@@ -1,0 +1,56 @@
+<div class="mat-elevation-z8" id="container">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="reportee">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Reportee </th>
+      <td mat-cell *matCellDef="let userReport">
+        <div class="data-buttons">
+          <span class="reportee">{{userReport.reportee.email}}</span>
+          <span class="expand"></span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reportedUser">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header >Reported user</th>
+      <td mat-cell *matCellDef="let userReport">
+        {{ userReport.reportedGuest?.email || userReport.reportedHost?.email || 'N/A' }}
+      </td>    </ng-container>
+
+    <ng-container matColumnDef="created on">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Reported on </th>
+      <td mat-cell *matCellDef="let userReport">
+        {{ userReport.createdOn | date: 'medium' }}
+      </td>    </ng-container>
+
+    <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Message </th>
+      <td mat-cell *matCellDef="let userReport">
+        <div class="data-buttons">
+          {{userReport.message}}
+          <span class="expand"></span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef > Action </th>
+      <td mat-cell *matCellDef="let userReport">
+        <div class="data-buttons">
+          <button *ngIf="userReport.reportedHost?.status == 'Active' || userReport.reportedGuest?.status == 'Active'" mat-raised-button color="warn" id="delete-button"
+                  (click)="onBlockUserClick(userReport)">Block</button>
+          <button *ngIf="userReport.reportedHost?.status == 'Blocked' || userReport.reportedGuest?.status == 'Blocked'" mat-raised-button id="unblock-button"
+                   (click)="onUnblockUserClick(userReport)">Unblock</button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons] = true
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

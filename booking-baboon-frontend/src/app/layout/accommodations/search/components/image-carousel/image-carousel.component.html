@@ -1,0 +1,14 @@
+<div *ngIf="images.length > 0" class="carousel" [@imageSlide]="currentIndex">
+  <button mat-icon-button (click)="prevImage()">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button>
+  <img  *ngIf="currentImage" [src]="currentImage" alt="Slide">
+  <mat-spinner id="loader" *ngIf="isLoading"></mat-spinner>
+  <button mat-icon-button (click)="nextImage()">
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </button>
+  <div class="indicator" >
+    {{ currentIndex + 1 }} / {{ images.length }}
+  </div>
+</div>
+<p *ngIf="images.length == 0">No images provided</p>

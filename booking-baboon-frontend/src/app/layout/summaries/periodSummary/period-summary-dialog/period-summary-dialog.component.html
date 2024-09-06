@@ -1,0 +1,52 @@
+<div id="overlay">
+  <div id="summary-box"  *ngIf="periodSummary">
+    <div id="title-section">
+      <h2 >Summary</h2>
+      <div class="expand"></div>
+      <div id="close-icon" (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <hr>
+    <div id="middle-section" >
+      <span id="period" >{{periodSummary.period.startDate}} - {{periodSummary.period.endDate}}</span>
+      <div class="expand"></div>
+      <div id="pdf-button" (click)="onDownloadPdfClick()">
+        Download PDF
+        <mat-icon>download</mat-icon>
+      </div>
+    </div>
+
+    <div class="mat-elevation-z8" id="container">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="accommodation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Accommodation </th>
+          <td mat-cell *matCellDef="let accommodationPeriodData">
+            {{accommodationPeriodData.accommodationName}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reservations">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Reservations </th>
+          <td mat-cell *matCellDef="let accommodationPeriodData"> {{accommodationPeriodData.reservationsCount}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="profit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Profit </th>
+          <td mat-cell *matCellDef="let accommodationPeriodData">
+            {{accommodationPeriodData.totalProfit | currency :'EUR'}}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     [showFirstLastButtons] = true
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+  </div>
+</div>

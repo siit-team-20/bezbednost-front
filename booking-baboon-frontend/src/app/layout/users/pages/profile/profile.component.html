@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<div class="background-img">
+  <div class="wrapper">
+    <app-navbar> </app-navbar>
+  </div>
+  <div id="empty-space">
+
+  </div>
+  <div class="content">
+    <div class="white-box">
+      <!-- Add content inside the white box as needed -->
+      <div class="profile">
+        <div class="center-title">
+          <h2>Profile</h2>
+        </div>
+        <hr>
+        <div class="profile-content" [formGroup]="profileForm">
+          <div *ngIf="user" class="element">
+            <span class="data-label">Email:</span>
+            <div class="container-no-space">
+              <input formControlName="email" [readonly]="isReadOnly('email')"
+                     [style.background]="isReadOnly('email') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     class="data" type="email" [(ngModel)]="user.email">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('email')"
+                      (click)="toggleEditMode('email')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div *ngIf="user" class="element">
+            <span class="data-label">First name:</span>
+            <div class="container-no-space">
+              <input formControlName="firstName" [readonly]="isReadOnly('firstName')"
+                     [style.background]="isReadOnly('firstName') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     class="data" type="text" [(ngModel)]="user.firstName">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('firstName')"
+                      (click)="toggleEditMode('firstName')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div *ngIf="user" class="element">
+            <span class="data-label">Last name:</span>
+            <div class="container-no-space">
+              <input formControlName="lastName" [readonly]="isReadOnly('lastName')" class="data"
+                     [style.background]="isReadOnly('lastName') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     type="text" [(ngModel)]="user.lastName">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('lastName')"
+                      (click)="toggleEditMode('lastName')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div *ngIf="user" class="element">
+            <span class="data-label">Phone:</span>
+            <div class="container-no-space">
+              <input formControlName="phone" [readonly]="isReadOnly('phone')" class="data"
+                     [style.background]="isReadOnly('phone') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     type="text" [(ngModel)]="user.phoneNumber">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('phone')"
+                      (click)="toggleEditMode('phone')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div *ngIf="user" class="element">
+            <span class="data-label">Address:</span>
+            <div class="container-no-space">
+              <input formControlName="address" [readonly]="isReadOnly('address')"
+                     [style.background]="isReadOnly('address') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     type="text" [(ngModel)]="user.address" class="data">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('address')"
+                      (click)="toggleEditMode('address')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button (click)="saveChanges()" id="saveChanges" mat-raised-button color="primary" [disabled]="!isFormValid">Save changes</button>
+          <button (click)="deleteProfile()" mat-raised-button color="warn">Delete profile</button>
+        </div>
+
+      <div [formGroup]="passwordForm">
+        <div class="center-title">
+          <h2>Password</h2>
+        </div>
+        <hr>
+        <div class="element">
+          <span class="data-label">Current password:</span>
+          <div class="container-no-space">
+            <input type="password" class="data" formControlName="currentPassword">
+            <mat-icon fontIcon="edit"></mat-icon>
+          </div>
+        </div>
+        <div class="element">
+          <span class="data-label">New password:</span>
+          <div class="container-no-space">
+            <input type="password" class="data" formControlName="newPassword">
+            <mat-icon fontIcon="edit"></mat-icon>
+          </div>
+        </div>
+
+        <div class="element">
+          <span class="data-label">Confirm password:</span>
+          <div class="container-no-space">
+            <input type="password" class="data" formControlName="confirmPassword">
+            <mat-icon fontIcon="edit"></mat-icon>
+          </div>
+        </div>
+        <div class="error-label" >
+          <p>{{errorLabel}}</p>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button (click)="changePassword()" id="changePassword" mat-raised-button color="primary" [disabled]="!isPasswordFormValid">Change password</button>
+      </div>
+
+      <div class="notifications">
+        <div class="center-title">
+          <h2>Notifications</h2>
+        </div>
+        <hr>
+        <div class="notification-toggles">
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationReservationCreation()" (change)="toggleNotification(host.id, NotificationType.ReservationCreated)">Reservation creations</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationReservationCancelled()" (change)="toggleNotification(host.id, NotificationType.ReservationCancelled)">Reservation cancellations</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationHostReview()" (change)="toggleNotification(host.id, NotificationType.HostReview)">Your reviews</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationAccommodationReview()" (change)="toggleNotification(host.id, NotificationType.AccommodationReview)">Accommodation reviews</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleGuest && guest" class="notification-switch" [checked]="isNotificationReservationRequestResponse()" (change)="toggleNotification(guest.id, NotificationType.ReservationRequestResponse)">Reservation responses</mat-slide-toggle>
+        </div>
+        <p id="notification-description">Choose what kind of notifications would you like to receive</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+<app-snack-bar></app-snack-bar>
+
+
+
+</div>

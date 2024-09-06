@@ -1,0 +1,29 @@
+<mat-card id="mat-card" *ngIf="notification!==undefined">
+
+
+
+  <div id="content">
+    <mat-card-title>
+      <div  class="title">
+        <b>{{notification.message}}</b>
+      </div>
+      <div>
+        <p >{{createdOn}}</p>
+
+      </div>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+
+      <div id="buttons">
+        <div id="right-buttons">
+          <button mat-raised-button id="read"  *ngIf="!notification.isRead" (click)="readNotification()" >Mark as read</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </div>
+
+
+
+
+</mat-card>

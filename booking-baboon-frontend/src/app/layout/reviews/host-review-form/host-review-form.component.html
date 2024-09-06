@@ -1,0 +1,16 @@
+<form id="wrapper" [formGroup]="reviewForm" xmlns="http://www.w3.org/1999/html" >
+    <div id="row">
+      <h1>Host Review</h1>
+      <div id="close-icon" (click)="onCloseClick()" >
+        <mat-icon >close</mat-icon>
+      </div>
+    </div>
+    <mat-divider id="divider"></mat-divider>
+    <mat-form-field>
+      <mat-label>Review Comment</mat-label>
+      <textarea id="desc" matInput type="text" formControlName="comment" > </textarea>
+    </mat-form-field>
+    <app-star-rating-input [rating]="rating"  [starCount]="starCount"  (ratingUpdated)="onRatingChanged($event)"></app-star-rating-input>
+    <button mat-raised-button type="submit" id="submit-review" (click) = "submit()">Submit</button>
+  </form>
+<app-snack-bar></app-snack-bar>

@@ -1,0 +1,65 @@
+<div class="overlay">
+  <div class="left-part">
+    <h1>{{accommodationModification.name}}</h1>
+    <div class="location-section">
+      <div class="address">
+        <mat-icon>location_on</mat-icon>
+        <p>{{accommodationModification.location?.address}}, {{accommodationModification.location?.city}}, {{accommodationModification.location?.country}}</p>
+      </div>
+      <button mat-button (click)="onShowLocationClick()">Show map</button>
+    </div>
+    <div class="images-section border">
+      <app-image-carousel [images]="loadedImages"></app-image-carousel>
+    </div>
+    <div class="edited-data">
+      <div class="edited-data">
+        <h3>Min guests: </h3>
+        <h3>{{accommodationModification.minGuests}}</h3>
+      </div>
+      <div class="edited-data">
+        <h3>Max guests: </h3>
+        <h3>{{accommodationModification.maxGuests}}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-part">
+    <div class="reviews-section">
+      <div class="rating border">
+        <mat-icon>star</mat-icon>
+        {{ratingDisplay}}
+      </div>
+      <button *ngIf="!isNaN(averageRating)" mat-button class="border" (click)="onShowReviewsClick()">See reviews</button>
+      <div class="rating border">
+        {{accommodationModification.type}}
+      </div>
+    </div>
+    <p id="description">{{accommodationModification.description}}</p>
+    <div id="amenity-list">
+      <div *ngFor="let amenity of accommodationModification.amenities">
+        <p class="border amenity-item">{{amenity.name}}</p>
+      </div>
+    </div>
+    <div id="middle-section">
+      <div class="prices">
+        <span class="total-price center-icon">1000<mat-icon>euro</mat-icon></span>
+        <span class="price-per-night center-icon">100<mat-icon>euro</mat-icon>/night</span>
+      </div>
+      <div class="host-info">
+        <span class="center-icon"><mat-icon>person</mat-icon>{{accommodationModification.host?.firstName}} {{accommodationModification.host?.lastName}}</span>
+        <button mat-raised-button color="primary" [routerLink]="['/host', accommodationModification.host?.id]" >View profile</button>
+      </div>
+    </div>
+    <div id="bottom-section">
+      <!--<button mat-raised-button color="primary">Send request</button>
+      <div class="toggle-icons" (click)="toggleFavorite()">
+        <mat-icon id="fav-border-icon" *ngIf="!isFavorite">favorite_border</mat-icon>
+        <mat-icon id="fav-icon" *ngIf="isFavorite">favorite</mat-icon>
+      </div>-->
+    </div>
+  </div>
+  <app-map-dialog *ngIf="isLocationShowing" (closeLocation)="onCloseLocation()" [address]="getAddress()"></app-map-dialog>
+  <app-reviews-dialog *ngIf="isReviewsShowing"  (closeReviews)="onCloseReviews()" [reviews]="reviews"></app-reviews-dialog>
+</div>
+
+

@@ -1,0 +1,59 @@
+<mat-card id="mat-card">
+  <div class="left-side">
+    <div class="status-type">
+      <p class="status-type">{{accommodationModification.requestType}}</p>
+    </div>
+    <img src="{{loadedImages[0]}}" alt="accommodation image" class="card-image" *ngIf="loadedImages">
+  </div>
+
+
+  <div id="content">
+    <mat-card-title>
+
+
+      <div class="title">
+        <b [routerLink]="['/accommodation-modifications', accommodationModification.id]">{{accommodationModification.name}}</b>
+
+      </div>
+      <div id="rating">
+        <mat-icon id="star" fontIcon="star"></mat-icon>
+        <p class="rating">{{ratingDisplay}}</p>
+      </div>
+
+
+      <div class="createdOn">
+        <p id="createdOnLabel">sent: </p>
+        <p id="createdOn">{{date}}</p>
+      </div>
+
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="host">
+        <p class="label">Host:</p>
+        <p class="input">{{accommodationModification.host?.email}}</p>
+      </div>
+      <div class="data">
+        <p class="label">Status:</p>
+        <p class="input">{{accommodationModification.status}}</p>
+      </div>
+      <div class="location">
+        <mat-icon id="location-pin" fontIcon="room"></mat-icon>
+        <p class="location">{{this.accommodationModification.location?.address + ", " + this.accommodationModification.location?.city + ", " + this.accommodationModification.location?.country}}</p>
+      </div>
+        <div class="right-buttons" *ngIf="accommodationModification.status === AccommodationModificationStatus.Pending">
+          <button mat-raised-button id="approve" (click)="onClickButtonApprove()">Approve</button>
+          <button mat-raised-button id="deny" (click)="denyRequest()" >Deny</button>
+        </div>
+        <div class="right-buttons" *ngIf="accommodationModification.status !== AccommodationModificationStatus.Pending">
+          <button mat-raised-button disabled>Approve</button>
+          <button mat-raised-button disabled>Deny</button>
+        </div>
+    </mat-card-content>
+  </div>
+
+
+
+
+</mat-card>
+

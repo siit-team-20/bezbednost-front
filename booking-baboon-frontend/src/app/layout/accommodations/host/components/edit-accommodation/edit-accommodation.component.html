@@ -1,0 +1,119 @@
+<div id="form">
+  <form [formGroup]="accommodationForm" id="left-form" >
+    <div id="name-location">
+      <mat-form-field id="name">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name">
+      </mat-form-field>
+      <mat-form-field id="country">
+        <mat-label>Country</mat-label>
+        <input matInput type="text" formControlName="country">
+
+      </mat-form-field>
+      <mat-form-field id="city">
+        <mat-label>City</mat-label>
+        <input matInput type="text" formControlName="city">
+      </mat-form-field>
+      <mat-form-field id="address">
+        <mat-label>Address</mat-label>
+        <input matInput type="text" formControlName="address">
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea id="desc" matInput type="text" formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field id="chip-list">
+      <mat-label>Amenities</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Amenity selection">
+        <mat-chip-row *ngFor="let selectedAmenity of selectedAmenities" (removed)="remove(selectedAmenity)">
+          {{ selectedAmenity.name }}
+          <button matChipRemove [attr.aria-label]="'remove ' + selectedAmenity.name">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input
+        placeholder="New Amenity..."
+        #amenityInput
+        [formControl]="selectorFormControl"
+        [matChipInputFor]="chipGrid"
+        [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"
+      />
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let amenity of amenitiesObservable | async" [value]="amenity.name">
+          {{ amenity.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <div id="guests">
+      <mat-form-field>
+        <mat-label>
+          Minimal Guest Number
+        </mat-label>
+        <input matInput type="number" formControlName="minGuests">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>
+          Maximum Guest Number
+        </mat-label>
+        <input matInput type="number" formControlName="maxGuests">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Property type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let type of accommodationTypes" [value]="type">{{ type }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div id="images">
+      <div *ngFor="let url of urls">
+        <img class="preview-image"  [src]="url">
+        <mat-icon (click) = removeImage(url) id="removeImg">cancel</mat-icon>
+      </div>
+
+    </div>
+
+    <input type="file" multiple (change)="onselect($event)">
+
+  </form>
+  <form id="right-form" [formGroup]="periodForm">
+    <mat-form-field subscriptSizing="dynamic" id="datepicker">
+      <mat-label>
+        Add available period
+      </mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input formControlName="startDate" matStartDate placeholder="Start date" readonly>
+        <input formControlName="endDate" matEndDate placeholder="End date" readonly>
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field id="price">
+      <input matInput type="number" placeholder="Price per night" formControlName="price">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" id="add" (click)="addAvailablePeriod()">Add</button>
+
+    <div  id="periods">
+      <mat-chip-grid>
+        <mat-chip-row  *ngFor="let period of availablePeriods; let i = index" (removed)="removeAvailablePeriod(i)">
+          {{ period.timeSlot?.startDate | date}} - {{ period.timeSlot?.endDate | date}} | Price: {{ period.pricePerNight | currency :'EUR'}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+    </div>
+
+    <mat-slide-toggle color="primary" formControlName="isPricingPerPerson">Price per person</mat-slide-toggle>
+    <div id="fill">
+    </div>
+    <button mat-raised-button id="submit" type="submit" (click)="editAccommodation()">Submit request</button>
+  </form>
+</div>

@@ -1,0 +1,103 @@
+#left-form{
+  padding-top: 20px;
+  padding-left: 20px;
+  width:35%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#right-form{
+  width:22%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-left: 100px;
+}
+
+#form{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 20px;
+}
+
+
+mat-form-field {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+#chip-list {
+  width: 100%;
+}
+
+
+#image-input{
+  color: #FFFFFF;
+  background-color: #F7A12E;
+}
+
+
+#datepicker{
+  width: 80%;
+}
+
+#datepicker1{
+  width: 70%;
+}
+
+
+#add{
+  color: #FFFFFF;
+  background-color: #F7A12E;
+}
+
+#submit{
+  color: #FFFFFF;
+  background-color: #F7A12E;
+  float: right;
+}
+
+#price{
+  width: 80%;
+}
+
+#periods{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 15em;
+}
+
+
+button{
+  width: 50%;
+}
+
+#icon{
+  transform: scale(0.7);
+  flex-shrink: 3;
+  white-space: pre-wrap;
+  color: #4b4b4b;
+  margin-left: 5px;
+}
+#row{
+  display: flex;
+  align-items: center;
+  align-content: flex-start;
+}
+
+#price1{
+  width: 50%;
+}
+
+#edit{
+  color: #FFFFFF;
+  background-color: #F7A12E;
+}
+
+#cancelDeadline{
+  width: 50%;
+}

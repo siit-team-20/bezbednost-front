@@ -1,0 +1,58 @@
+<div class="mat-elevation-z8" id="container">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="user">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > User </th>
+      <td mat-cell *matCellDef="let reservation">
+        <div class="data-buttons">
+          <span class="host-email">{{reservation.guest.email}}</span>
+          <span class="expand"></span>
+          <button mat-raised-button color="warn" id="guest-report-button" (click)="onGuestReportClick(reservation.guest.id)" [disabled]="!isGuestReportable(reservation.status)">Report</button>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cancellations">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Cancellations </th>
+      <td mat-cell *matCellDef="let reservation"> {{reservation.cancellationCount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dates">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Dates </th>
+      <td mat-cell *matCellDef="let reservation"> {{reservation.timeSlot.startDate}} - {{reservation.timeSlot.endDate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accommodation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Accommodations </th>
+      <td mat-cell *matCellDef="let reservation">
+        {{reservation.accommodation.name}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Status </th>
+      <td mat-cell *matCellDef="let reservation" [ngStyle]="getStatusColor(reservation.status)"> {{reservation.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef > Action </th>
+      <td mat-cell *matCellDef="let reservation">
+        <div class="data-buttons">
+          <button mat-raised-button color="primary" id="approve-reservation-button" [disabled]="!isPending(reservation.status)"
+                  (click)="onApproveReservationClick(reservation.id)">Approve</button>
+          <button mat-raised-button color="warn" id="deny-reservation-button" [disabled]="!isPending(reservation.status)"
+                  (click)="onDenyReservationClick(reservation.id)">Deny</button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons] = true
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+  <app-guest-report-form *ngIf="isGuestReportShowing" (closeReport)="onGuestReportClose()"  [guestId]="currentGuestId"></app-guest-report-form>
+</div>

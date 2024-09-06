@@ -1,0 +1,15 @@
+<form id="wrapper" [formGroup]="reportForm" xmlns="http://www.w3.org/1999/html" >
+  <div id="row">
+    <h1>Report Host</h1>
+    <div id="close-icon" (click)="onCloseClick()" >
+      <mat-icon >close</mat-icon>
+    </div>
+  </div>
+  <mat-divider id="divider"></mat-divider>
+  <mat-form-field>
+    <mat-label>Report Message</mat-label>
+    <textarea id="desc" matInput type="text" formControlName="message" > </textarea>
+  </mat-form-field>
+  <button mat-raised-button type="submit" id="submit-report" (click) = "submit()">Submit</button>
+</form>
+<app-snack-bar></app-snack-bar>

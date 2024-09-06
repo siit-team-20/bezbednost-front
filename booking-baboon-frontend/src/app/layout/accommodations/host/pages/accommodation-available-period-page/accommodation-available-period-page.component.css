@@ -1,0 +1,40 @@
+.wrapper{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 2em;
+
+}
+
+.background-img{
+  background-image: url('../../../../../../assets/white-background.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  height: 100vh;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(243, 243, 243, 0.8);
+  margin-top: 0.1em;
+  border-radius: 10px;
+  width: 100%;
+}
+
+h2{
+  color: #282828;
+}
+
+
+mat-divider{
+  margin-top: 10px;
+  color: #282828;
+  width: 98%;
+}
+
+app-accommodation-available-period{
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+}

@@ -1,0 +1,42 @@
+<div id="request-box">
+  <div id="title-section">
+    <h2>Reservation</h2>
+    <p>Enter details to create a request</p>
+  </div>
+  <form id="request-form" [formGroup]="requestForm" (submit)="onSubmitClick()">
+    <mat-form-field subscriptSizing="dynamic" id="accommodation-section" class="input-field">
+      <mat-label>
+        Accommodation name
+      </mat-label>
+      <input formControlName="accommodation" readonly matInput type="search">
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic" id="date-section" class="input-field">
+      <mat-label>
+        Enter a date range
+      </mat-label>
+      <mat-date-range-input  [rangePicker]="picker">
+        <input formControlName="checkin"  matStartDate placeholder="Start date" readonly>
+        <input formControlName="checkout"  matEndDate placeholder="End date" readonly>
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker [dateClass]="dateClass" #picker></mat-date-range-picker>
+    </mat-form-field>
+
+
+    <div id="bottom-section">
+      <mat-form-field subscriptSizing="dynamic" id="guest-input">
+        <mat-label>
+          <mat-icon>person</mat-icon> Number of guests
+        </mat-label>
+        <input formControlName="guestNum" matInput type="number">
+      </mat-form-field>
+      <div class="expand"></div>
+      <span>Price: <span id="price">{{price}}<mat-icon>euro</mat-icon></span></span>
+    </div>
+
+
+    <button mat-raised-button type="submit" color="primary" id="send-request-button" [disabled]="!requestForm.valid">Send a request</button>
+  </form>
+</div>
+<app-snack-bar></app-snack-bar>

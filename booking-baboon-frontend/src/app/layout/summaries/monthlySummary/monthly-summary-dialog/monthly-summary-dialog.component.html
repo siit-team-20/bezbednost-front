@@ -1,0 +1,23 @@
+<div id="overlay">
+  <div id="summary-box"  *ngIf="summaryData">
+    <div id="title-section">
+      <h2 >Summary</h2>
+      <div class="expand"></div>
+      <div id="close-icon" (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <hr>
+    <div id="middle-section" >
+      <span id="period" >{{summaryData.timeSlot.startDate}} - {{summaryData.timeSlot.endDate}}</span>
+      <div class="expand"></div>
+      <div id="pdf-button" (click)="onDownloadPdfClick()">
+        Download PDF
+        <mat-icon>download</mat-icon>
+      </div>
+    </div>
+
+    <app-reservations-chart *ngIf="summaryData.reservationsData !== undefined" [chartData]="summaryData.reservationsData"></app-reservations-chart>
+    <app-profit-chart *ngIf="summaryData.profitData !== undefined" [chartData]="summaryData.profitData"></app-profit-chart>
+  </div>
+</div>

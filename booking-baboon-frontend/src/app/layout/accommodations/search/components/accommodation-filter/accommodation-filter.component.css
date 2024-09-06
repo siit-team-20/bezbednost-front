@@ -1,0 +1,112 @@
+#overlay{
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+  background-color: rgba(70, 70, 70, 0.5);
+}
+
+#filter-box{
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  max-height: 90%;
+  flex-direction: column;
+  padding: 20px 30px 20px 30px;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 50vw;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+hr{
+  width: 100%;
+  height: 1px;
+  background-color: #e5e5e5;
+  border-radius: 50px;
+}
+
+.expand{
+  flex: 1;
+}
+
+#close-icon{
+  cursor: pointer;
+}
+
+#title-section{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#price-inputs{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  color: #655C5C;
+}
+
+/*RATING*/
+
+#rating-boxes{
+  margin: 0 30px 20px 30px;
+}
+
+#rating-boxes mat-chip-option{
+  background-color: white;
+  color: #655C5C;
+  border-radius: 20px;
+  border: 2px solid #C9C5C5;
+}
+
+#rating-boxes mat-chip-option mat-icon{
+  color: #F7A12E;
+  stroke: #282828;
+}
+
+.rating-box{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap:5px;
+  padding: 10px;
+}
+
+/*TYPES*/
+
+#type-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 30px 20px 30px;
+}
+
+#amenities-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0 30px 20px 30px;
+}
+
+/*BUTTONS*/
+#bottom-section{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+#apply-button{
+  color:white;
+}

@@ -1,0 +1,66 @@
+.wrapper{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 2em;
+}
+
+.background-img{
+  background-image: url('../../../../assets/white-background.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  height: 100vh;
+}
+
+h1{
+  color: #282828;
+}
+
+p{
+  color: #282828;
+}
+
+a{
+  text-decoration: none;
+  color: #2F93F6;
+  float: right;
+  margin-right: 2%;
+}
+
+#login{
+  color: #FFFFFF;
+  width: 100%;
+}
+
+mat-icon{
+  color: #282828;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+.form-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+
+  gap: 8px;
+  background: #FFFFFF;
+  box-shadow: 0 4px 10px rgba(138, 142, 148, 0.05);
+  width: 20vw;
+  margin: 20vh auto;
+
+  border-radius: 20px;
+}
+
+#loginFailed{
+  color: 	#cc3300;
+}
+
+
+
+

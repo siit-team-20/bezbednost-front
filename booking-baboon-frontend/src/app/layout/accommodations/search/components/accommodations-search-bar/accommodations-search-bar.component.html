@@ -1,0 +1,40 @@
+<div class="overlay">
+  <form class="accommodation-search-form" [formGroup]="searchForm" (submit)="onSubmitClick()">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>
+        <mat-icon>location_on</mat-icon> Location
+      </mat-label>
+      <input formControlName="city" matInput type="search" placeholder="Ex. Belgrade">
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>
+        Enter a date range
+      </mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input formControlName="checkin" matStartDate placeholder="Start date" readonly>
+        <input formControlName="checkout" matEndDate placeholder="End date" readonly>
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>
+        <mat-icon>person</mat-icon> Number of guests
+      </mat-label>
+      <input formControlName="guestNum" matInput type="number">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="warn">Search</button>
+    <button mat-button type="button" (click)="onResetClick()">Reset</button>
+  </form>
+
+  <div id="filter-button" [matBadge]="selectedFilterCount" matBadgeColor="primary" (click)="onFilterButtonClick()">
+    <mat-icon>tune</mat-icon>
+    <span>Filters</span>
+  </div>
+
+  <app-accommodation-filter [class.show]="isFilterShowing" (closeFilter)="onCloseFilter()" (applyFilter)="onApplyFilter($event)" (selectedFilterCountChanged)="onFilterCountChanged($event)" ></app-accommodation-filter>
+</div>
+

@@ -1,0 +1,54 @@
+<div id="host-profile-box" *ngIf="host">
+  <div id="title-section">
+    <h2>Host profile</h2>
+  </div>
+  <hr>
+  <section id="profile-section">
+    <div class="info">
+      <span class="left-info">Email</span>
+      <span>{{host.email}}</span>
+    </div>
+    <div class="info">
+      <span class="left-info">First Name</span>
+      <span>{{host.firstName}}</span>
+    </div>
+    <div class="info">
+      <span class="left-info">Last Name</span>
+      <span>{{host.lastName}}</span>
+    </div>
+    <div class="info">
+      <span class="left-info">Phone</span>
+      <span>{{host.phoneNumber}}</span>
+    </div>
+    <div class="info">
+      <span class="left-info">Address</span>
+      <span>{{host.address}}</span>
+    </div>
+
+  </section>
+  <hr>
+  <section id="reviews-section">
+    <div class="info">
+      <span class="left-info">Average rating</span>
+      <div id="rating">
+        {{ratingDisplay}}
+        <mat-icon>star</mat-icon>
+      </div>
+    </div>
+    <div class="info">
+      <span class="left-info">Number of reviews</span>
+      <span>{{reviews.length}}</span>
+    </div>
+    <div id="see-reviews-container">
+      <span id="see-reviews-button" (click)="onShowReviewsClick()">SEE ALL REVIEWS</span>
+    </div>
+  </section>
+
+  <div id="bottom-section">
+    <button id="review-button" mat-raised-button (click)="onReviewClick()" color="primary">Review host</button>
+    <div class="expand"></div>
+    <button id="report-button" mat-raised-button (click)="onReportClick()" color="warn">Report host</button>
+  </div>
+
+  <app-reviews-dialog *ngIf="isReviewsShowing"  (closeReviews)="onCloseReviews()" [reviews]="reviews"></app-reviews-dialog>
+</div>

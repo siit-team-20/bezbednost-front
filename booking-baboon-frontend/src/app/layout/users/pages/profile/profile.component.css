@@ -1,0 +1,125 @@
+.background-img {
+  background-image: url('../../../../../assets/white-background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+  color: #fff;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+}
+
+.error-label {
+  color: red;
+}
+
+.white-box {
+  margin-top: 8vh;
+  width: 750px;
+  height: 75vh;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 10px;
+  background-color: white;
+  overflow: auto; /* Add this line for vertical scroll */
+}
+
+.data-label {
+  color:rgba(0, 0, 0, 1);
+  text-align:left;
+  font-size:20px;
+  letter-spacing:0;
+}
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.center-title h2 {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: #282828;
+  text-align: center; /* Center the text within the h2 element */
+}
+
+.data {
+  width: 500px;
+  height: 22px;
+  background: rgba(217, 217, 217, 0.5);
+  /* Primary */
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  color:rgba(0, 0, 0, 1);
+  border: none;
+  outline: none;
+}
+
+.element {
+  display:flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display:flex;
+  justify-content: space-between;
+}
+
+.edit-button {
+  height: 24px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background: rgba(217, 217, 217, 0.5);
+}
+
+.edit-button:hover {
+  background-color: rgba(254,163,26, 0.5); /* Darker green */
+}
+
+.edit-mode {
+  background-color: rgba(254,163,26, 0.5) /* Your desired color when in edit mode */;
+}
+
+#saveChanges {
+  color: white;
+}
+#changePassword {
+  color: white;
+}
+.container-no-space {
+  display:flex;
+  justify-content: space-between;
+}
+
+.notification-toggles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.notification-switch {
+  margin: 1em;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  color:rgba(0, 0, 0, 1);
+}
+
+#notification-description {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  font-style: italic;
+  color:rgba(0, 0, 0, 70%);
+}

@@ -1,0 +1,96 @@
+#host-profile-box{
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  max-height: 90%;
+  flex-direction: column;
+  padding: 10px 30px 30px 30px;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 800px;
+}
+
+hr{
+  width: 100%;
+  height: 0.5px;
+  background-color: #e5e5e5;
+  border-radius: 50px;
+}
+
+#title-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#title-section h2{
+  margin: 20px 0 10px 0;
+}
+
+.expand{
+  flex: 1;
+}
+
+.info{
+  width:100%;
+  padding: 10px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.left-info{
+  width: 40%;
+}
+
+#bottom-section{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+#rating{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+  gap: 5px;
+}
+
+#rating mat-icon{
+  color: #F7A12E;
+}
+
+#see-reviews-container{
+  margin: 20px 0 20px 0;
+}
+
+#see-reviews-button{
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #262626;
+  border-radius: 20px;
+  border: 1px solid #C9C5C5;
+  cursor: pointer;
+}
+
+#review-button{
+  color: white;
+  padding: 20px;
+}
+
+#report-button{
+  padding: 20px;
+}
+
+app-reviews-dialog{
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}

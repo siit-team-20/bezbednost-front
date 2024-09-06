@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<div class="background-img">
+  <div class="wrapper">
+    <app-navbar> </app-navbar>
+    <div class="content">
+      <div class="title">
+        <h2 class="titleComponent">Modification requests</h2>
+        <mat-slide-toggle id="slider" color="primary" [(ngModel)]="showAllRequests" (change)="onToggleChange($event)">Show all requests</mat-slide-toggle>
+      </div>
+      <mat-divider></mat-divider>
+      <app-accommodation-modification-cards [accommodationModifications] = "accommodationModifications"></app-accommodation-modification-cards>
+    </div>
+
+  </div>
+</div>
+
+<app-snack-bar></app-snack-bar>

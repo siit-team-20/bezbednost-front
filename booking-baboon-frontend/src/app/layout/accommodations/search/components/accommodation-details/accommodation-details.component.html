@@ -1,0 +1,52 @@
+<div class="overlay">
+  <div class="left-part">
+    <h1>{{accommodation.name}}</h1>
+    <div class="location-section">
+      <div class="address">
+        <mat-icon>location_on</mat-icon>
+        <p>{{accommodation.location?.address}}, {{accommodation.location?.city}}, {{accommodation.location?.country}}</p>
+      </div>
+      <button mat-button (click)="onShowLocationClick()">Show map</button>
+    </div>
+    <div class="images-section border">
+      <app-image-carousel [images]="loadedImages"></app-image-carousel>
+    </div>
+  </div>
+
+  <div class="right-part">
+    <div class="reviews-section">
+      <div class="rating border">
+        <mat-icon>star</mat-icon>
+        {{ratingDisplay}}
+      </div>
+      <button *ngIf="averageRating !== -1" mat-button class="border" (click)="onShowReviewsClick()">See reviews</button>
+    </div>
+    <p id="description">{{accommodation.description}}</p>
+    <div id="amenity-list">
+      <div *ngFor="let amenity of accommodation.amenities">
+        <p class="border amenity-item">{{amenity.name}}</p>
+      </div>
+    </div>
+    <div id="middle-section">
+      <div class="prices">
+        <span class="total-price center-icon">1000<mat-icon>euro</mat-icon></span>
+        <span class="price-per-night center-icon">100<mat-icon>euro</mat-icon>/night</span>
+      </div>
+      <div class="host-info">
+        <span class="center-icon"><mat-icon>person</mat-icon>{{accommodation.host?.firstName}} {{accommodation.host?.lastName}}</span>
+        <button mat-raised-button color="primary" [routerLink]="['/host/profile', accommodation.host?.id]" >View profile</button>
+      </div>
+    </div>
+    <div id="bottom-section">
+      <button mat-raised-button color="primary" [routerLink]="['/accommodations', accommodation.id, 'reserve']">Send request</button>
+      <div class="toggle-icons" *ngIf="isGuestLogged()" (click)="toggleFavorite()">
+        <mat-icon id="fav-border-icon" *ngIf="!isFavorite">favorite_border</mat-icon>
+        <mat-icon id="fav-icon" *ngIf="isFavorite">favorite</mat-icon>
+      </div>
+    </div>
+  </div>
+  <app-map-dialog *ngIf="isLocationShowing" (closeLocation)="onCloseLocation()" [address]="getAddress()"></app-map-dialog>
+  <app-reviews-dialog *ngIf="isReviewsShowing"  (closeReviews)="onCloseReviews()" [reviews]="reviews"></app-reviews-dialog>
+</div>
+
+

@@ -1,0 +1,33 @@
+<mat-card id="mat-card" *ngIf="review!==undefined">
+
+
+
+  <div id="content">
+    <mat-card-title>
+      <div  class="title">
+        <b>{{hostEmail}}</b>
+      </div>
+      <div id="rating">
+        <mat-icon id="star" fontIcon="star"></mat-icon>
+        <p class="rating">{{review.rating}}</p>
+
+      </div>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <p>
+        {{review.comment}}
+      </p>
+
+      <div id="buttons">
+        <div id="right-buttons">
+          <button mat-raised-button id="delete" (click)="deleteReview()">Delete</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </div>
+
+
+
+
+</mat-card>

@@ -1,0 +1,19 @@
+.wrapper{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 2em;
+}
+
+.background-img{
+  background-image: url('../../../../../assets/white-background.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  height: 100vh;
+}
+
+app-guest-reservations{
+  padding: 10px;
+  max-height: calc(100vh - 300px);
+  overflow: auto;
+}

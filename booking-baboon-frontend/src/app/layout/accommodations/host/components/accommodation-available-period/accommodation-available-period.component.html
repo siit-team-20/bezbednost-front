@@ -1,0 +1,66 @@
+<div id="form">
+
+
+<form id="left-form" [formGroup]="periodForm">
+  <mat-form-field subscriptSizing="dynamic" id="datepicker">
+    <mat-label>
+      Add available period
+    </mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input formControlName="startDate" matStartDate placeholder="Start date" readonly>
+      <input formControlName="endDate" matEndDate placeholder="End date" readonly>
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+  <mat-form-field id="price">
+    <input matInput type="number" placeholder="Price per night" formControlName="price">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" id="add" (click)="addAvailablePeriod()">Add</button>
+
+  <div  id="periods">
+    <mat-chip-grid>
+      <mat-chip-row  *ngFor="let period of availablePeriods; let i = index" (removed)="removeAvailablePeriod(i)" >
+        <div id="row">
+          {{ period.timeSlot?.startDate | date}} - {{ period.timeSlot?.endDate | date}} | Price: {{ period.pricePerNight | currency :'EUR'}}
+          <mat-icon id="icon" (click)=edit(period)>edit</mat-icon>
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </div>
+
+
+      </mat-chip-row>
+    </mat-chip-grid>
+  </div>
+  <mat-form-field id="cancelDeadline" [formGroup]="cancelForm">
+    <mat-label>
+      Reservation Cancellation Deadline
+    </mat-label>
+    <input matInput type="number" formControlName="cancelDeadline">
+  </mat-form-field>
+  <button mat-raised-button id="submit" type="submit" (click)="updatePeriods()">Submit request</button>
+</form>
+<form id="right-form" *ngIf="selectedPeriod" [formGroup]="editPeriodForm">
+  <mat-form-field subscriptSizing="dynamic" id="datepicker1">
+    <mat-label>
+      Add available period
+    </mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input formControlName="startDate" matStartDate placeholder="Start date" readonly>
+      <input formControlName="endDate" matEndDate placeholder="End date" readonly>
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+  </mat-form-field>
+
+  <mat-form-field id="price1">
+    <input matInput type="number" placeholder="Price per night" formControlName="price">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" id="edit" type=submit (click)="editAvailablePeriod()">Edit</button>
+</form>
+
+</div>

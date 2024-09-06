@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <img class="logo" src="../../../../assets/logo.png" alt=" ">
+  <span class="app-title">Booking Baboon</span>
+  <div id="right-section">
+    <div id="icons">
+      <div id="account-icon">
+        <mat-icon (click)="openAccountPage()">account_circle</mat-icon>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" [routerLink]="['/review-reports']">
+      Reports
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/accommodation-modifications']">
+      Accommodation Modifications
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/accommodations']">
+      Accommodations
+    </button>
+    <button mat-raised-button color="warn" (click)="logout()">
+      Log Out
+    </button>
+  </div>
+</mat-toolbar>
+

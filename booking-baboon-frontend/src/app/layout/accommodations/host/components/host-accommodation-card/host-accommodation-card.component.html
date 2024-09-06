@@ -1,0 +1,40 @@
+<mat-card id="mat-card" *ngIf="accommodation!==undefined">
+  <img mat-card-image src="{{loadedImages[0]}}" alt="accommodation image" class="card-image"  *ngIf="loadedImages">
+
+
+  <div id="content">
+    <mat-card-title>
+      <div  class="title">
+        <b [routerLink]="['/accommodations', accommodation.id]">{{accommodation.name}}</b>
+      </div>
+      <div id="rating">
+        <mat-icon id="star" fontIcon="star"></mat-icon>
+        <p class="rating">{{ratingDisplay}}</p>
+
+      </div>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="location">
+        <mat-icon id="location-pin" fontIcon="room"></mat-icon>
+        <p class="location">{{accommodationLocation}}</p>
+      </div>
+      <div>
+        <mat-slide-toggle *ngIf="autoAccept !== undefined" [checked]="autoAccept" color="primary" (click)="toggleAutoAccept()">Auto accept reservations</mat-slide-toggle>
+      </div>
+      <div id="buttons">
+        <button mat-raised-button  id="generate-report" (click)="showSummaryDialog()">Generate summary <mat-icon> article</mat-icon></button>
+        <div id="right-buttons">
+          <button mat-raised-button [routerLink]="['/accommodations/periods/', accommodation.id]">Change availability</button>
+          <button mat-raised-button *ngIf="!accommodation.isBeingEdited" id="edit" [routerLink]="['/accommodations', accommodation.id, 'edit']">Edit</button>
+          <div [matTooltip]="'There is already an edit request waiting approval'">
+            <button mat-raised-button *ngIf="accommodation.isBeingEdited" id="disabled-edit" [disabled]="true" [matTooltip]="'Editing is disabled'">Edit</button>
+          </div>
+          <button mat-raised-button id="delete">Delete</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </div>
+</mat-card>
+<app-monthly-summary-dialog *ngIf="isSummaryShowing" (closeMonthlySummary)="onCloseSummary()" [accommodationId]="accommodation.id"></app-monthly-summary-dialog>
+

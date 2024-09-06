@@ -1,0 +1,207 @@
+.overlay{
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  padding: 30px;
+  background-color: rgba(243, 243, 243, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 250px);
+  margin: 20px 0 10px 0;
+  color: black;
+  overflow: auto;
+}
+
+.left-part{
+  width: 40%;
+  height: 100%;
+  display: inline-block;
+}
+
+.right-part{
+  width: 55%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1{
+  margin: 0 0 0 20px;
+}
+
+.center-icon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/*Location section*/
+
+.location-section{
+  margin-left: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.location-section button{
+  color: cornflowerblue;
+}
+
+.address{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.address mat-icon{
+  color: #F7A12E;
+}
+
+/*Image section*/
+
+.images-section{
+  width: 100%;
+  min-height: 60%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Reviews section*/
+.reviews-section{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+  gap: 20px;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.rating{
+  /*width: 65px;*/
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+  gap: 10px;
+}
+
+.border{
+  border: 2px solid rgba(232, 232, 232, 0.5);
+  background-color: white;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.rating mat-icon{
+  color: #F7A12E;
+}
+
+#description{
+  display: inline-block;
+  flex: 1;
+  width:100%;
+}
+
+/*Amenities section*/
+
+#amenity-list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/*Middle section*/
+
+#middle-section{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.prices{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width:40%;
+}
+
+.total-price{
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.price-per-night{
+  vertical-align: middle;
+  font-size: 20px;
+}
+
+.price-per-night mat-icon{
+  font-size: 20px;
+}
+
+.host-info{
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.host-info button{
+  border-radius: 20px;
+  color: white;
+}
+
+.host-info mat-icon{
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+/*Bottom section*/
+
+#bottom-section{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  margin: 15px  0 30px 0;
+}
+
+#bottom-section button{
+  border-radius: 20px;
+  color: white;
+}
+
+/*MAP*/
+app-map-dialog{
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+/*REVIEWS*/
+app-reviews-dialog{
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.edited-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

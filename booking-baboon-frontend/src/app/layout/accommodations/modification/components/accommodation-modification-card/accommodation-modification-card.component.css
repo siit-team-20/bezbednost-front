@@ -1,0 +1,203 @@
+#mat-card{
+  color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.left-side {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+}
+
+.card-image {
+  background-color: #FFFFFF;
+  width:15em;
+  border-radius: 10px;
+  background-size: cover;
+  padding: 0.5em 10px 10px 10px;
+}
+
+p.status-type {
+  margin: auto;
+  font-variant: all-small-caps;
+  color: #a2a2a2;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin-top: 3px;
+}
+
+.createdOn {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0;
+}
+p#createdOn {
+  margin-top: 10px;
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+p#createdOnLabel {
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
+p.createdOn {
+  margin: 0;
+  font-family: Poppins, "Helvetica Neue", sans-serif;
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.host {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+p.label {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+p.input {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: #F7A12E;
+}
+p.status {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+mat-card-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 0px;
+}
+
+.title {
+  margin-left: 5px;
+  margin-top: 10px;
+  color: #F7A12E;
+  display: flex;
+  flex-direction: row;
+}
+
+b:hover {
+  cursor: pointer;
+}
+
+mat-card-title{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+}
+
+p.location {
+  margin: 10px;
+  flex-shrink: 3;
+  white-space: pre-wrap;
+  float: left;
+}
+
+#location-pin {
+  color: #F7A12E;
+}
+
+.price{
+  display: flex;
+}
+
+
+
+#rating {
+  margin-top: 5px;
+  margin-right: 10px;
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-right: auto;
+  margin-left: 1em;
+}
+
+
+p.rating {
+  margin: 0;
+  font-family: Poppins, "Helvetica Neue", sans-serif;
+}
+
+p.final-price{
+  margin-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p.price-per-night {
+  margin: 0px;
+  font-size: 11px;
+}
+
+#star {
+  float: right;
+  color: #F7A12E;
+}
+
+
+#content{
+  display: flex;
+  flex-direction: column;
+  width: 100%
+}
+
+mat-divider{
+  color: #282828;
+  width: 100%;
+}
+
+#buttons{
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+#generate-report{
+  background-color: #652a12;
+  color: #FFFFFF;
+  border-radius: 10px;
+  width: 170px;
+}
+
+.right-buttons{
+  justify-content: flex-end;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+#approve{
+  background-color:#6f9c3d;
+  color: #FFFFFF;
+}
+
+#deny{
+  background-color: #ff4a4a;
+  color: #FFFFFF;
+}

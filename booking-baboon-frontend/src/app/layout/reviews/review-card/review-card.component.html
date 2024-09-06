@@ -1,0 +1,18 @@
+<div *ngIf="review" id="container">
+  <div id="top-section">
+    <h3>{{reviewer?.email}}</h3>
+    <div class="expand"></div>
+    <div id="rating">
+      <span>{{review.rating}}</span>
+      <mat-icon>star</mat-icon>
+    </div>
+  </div>
+  <p>{{review.comment}}</p>
+  <div class="expand"></div>
+  <div id="bottom-section">
+  <p id="posted-on">posted on {{getDateISOString()}}</p>
+    <button *ngIf="isReviewedHost && review.id" mat-raised-button id="report-button" (click)="onReviewReportClick(review.id)">Report Comment</button>
+  </div>
+</div>
+<app-review-report-form  *ngIf="isReviewReportShowing" (closeReport)="onReviewReportClose()"  [reviewId]="currentReviewId"></app-review-report-form>
+

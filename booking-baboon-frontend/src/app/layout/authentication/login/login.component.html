@@ -1,0 +1,39 @@
+<div class="background-img">
+  <div class="wrapper">
+    <app-navbar> </app-navbar>
+    <div class="form-wrapper">
+      <div>
+        <h1>Log In</h1>
+      </div>
+    <form [formGroup]="loginForm">
+      <div>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-raised-button type="submit" id="login" color="primary" (click) = "login()">
+          Log In
+        </button>
+      </div>
+      <div *ngIf="loginFailed">
+        <p id="loginFailed">Invalid username or password.</p>
+      </div>
+      <div>
+        <p>Don't have an account?<a [routerLink]="['/register']">Sign Up</a></p>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+

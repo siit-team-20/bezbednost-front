@@ -1,0 +1,30 @@
+<mat-toolbar>
+  <img class="logo" src="../../../../assets/logo.png" alt=" ">
+  <span class="app-title">Booking Baboon</span>
+  <div id="right-section">
+    <div id="icons">
+      <div id="account-icon">
+        <mat-icon (click)="openAccountPage()">account_circle</mat-icon>
+      </div>
+      <div id="favorite-icon" [routerLink]="['/guest', loggedUserId, 'favorites']">
+        <mat-icon>favorite</mat-icon>
+      </div>
+      <div id="notification-icon" [routerLink]="['/notifications/', loggedUserId]">
+        <mat-icon *ngIf = "badge!='0'" matBadge="{{badge}}" matBadgeColor="warn" >notifications</mat-icon>
+        <mat-icon *ngIf = "badge=='0'">notifications</mat-icon>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" [routerLink]="['/guest', loggedUserId, 'reviews']">
+      Reviews
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/guest', loggedUserId, 'reservations']">
+      Reservations
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/accommodations']">
+      Accommodations
+    </button>
+    <button mat-raised-button color="warn" (click)="logout()">
+      Log Out
+    </button>
+  </div>
+</mat-toolbar>

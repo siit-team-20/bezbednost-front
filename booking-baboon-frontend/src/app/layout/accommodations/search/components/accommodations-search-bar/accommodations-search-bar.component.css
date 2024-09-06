@@ -1,0 +1,56 @@
+.accommodation-search-form{
+  display:flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  height:auto;
+}
+
+.accommodation-search-form button{
+  margin-left: 5px;
+}
+
+mat-form-field {
+  border-radius: 20px; /* Adjust the border-radius as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+}
+
+.overlay{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+  padding: 10px;
+  background-color: rgba(243, 243, 243, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0 10px 0;
+}
+
+#filter-button{
+  background-color: white;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  gap:10px;
+  padding: 10px;
+  font-size: 14px;
+  color: black;
+  border-radius: 20px;
+  border: 2px solid #C9C5C5;
+  cursor: pointer;
+}
+
+app-accommodation-filter{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  z-index: 2;
+}
+
+app-accommodation-filter.show {
+  display: block;
+}

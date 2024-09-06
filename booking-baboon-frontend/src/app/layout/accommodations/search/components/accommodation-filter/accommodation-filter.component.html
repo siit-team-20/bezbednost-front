@@ -1,0 +1,62 @@
+<div id="overlay">
+  <div id="filter-box">
+    <div id="title-section">
+      <h2>Filters</h2>
+      <div class="expand"></div>
+      <div id="close-icon" (click)="onCloseClick()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+    <hr>
+    <div id="price-section" [formGroup]="priceForm">
+      <h3>Total price</h3>
+      <div id="price-inputs">
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Min price</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="minPrice">
+          <span matTextPrefix>&euro;&nbsp;</span>
+          <span matTextSuffix>.00</span>
+        </mat-form-field>
+        <span>-</span>
+        <mat-form-field floatLabel="always" appearance="outline">
+          <mat-label>Max price</mat-label>
+          <input matInput type="number" placeholder="0" formControlName="maxPrice">
+          <span matTextPrefix>&euro;&nbsp;</span>
+          <span matTextSuffix>.00</span>
+        </mat-form-field>
+      </div>
+    </div>
+    <hr>
+    <div id="rating-section" [formGroup]="ratingForm">
+      <h3>Rating</h3>
+      <mat-chip-listbox aria-label="rating selection" id="rating-boxes" formControlName="selectedRating">
+        <mat-chip-option *ngFor="let rating of ['4', '3', '2', '1']" [value]="rating">
+          <div class="rating-box">
+            <mat-icon>star</mat-icon>
+            <span>{{ rating }}+</span>
+          </div>
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+    <hr>
+    <div id="type-section">
+      <h3>Accommodation type</h3>
+      <div id="type-box" [formGroup]="accommodationTypeForm">
+        <span class="type-checkbox" *ngFor="let type of getEnumValues(AccommodationType)"><mat-checkbox color="primary" formControlName="{{type}}">{{type}}</mat-checkbox></span>
+      </div>
+    </div>
+    <hr>
+    <div id="amenity-section">
+      <h3>Amenities</h3>
+      <div id="amenities-box" [formGroup]="amenitiesForm">
+        <span class="amenity-checkbox" *ngFor="let amenity of amenities"><mat-checkbox  color="primary" formControlName="{{amenity.name}}">{{amenity.name}}</mat-checkbox></span>
+      </div>
+    </div>
+    <hr>
+    <div id="bottom-section">
+      <button id="clear-button" mat-button (click)="onClearClick()">Clear</button>
+      <button id="apply-button" mat-raised-button color="primary" (click)="onApplyClick()">Apply</button>
+    </div>
+  </div>
+</div>
+

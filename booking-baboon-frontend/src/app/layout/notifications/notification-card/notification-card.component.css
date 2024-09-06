@@ -1,0 +1,63 @@
+#mat-card{
+  color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+mat-card-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.title {
+  margin-left: 20px;
+  margin-top: 20px;
+  color: #F7A12E;
+  width: 90%;
+}
+
+mat-card-title{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+
+
+
+
+
+
+#content{
+  display: flex;
+  flex-direction: column;
+  width: 100%
+}
+
+mat-divider{
+  color: #282828;
+  width: 100%;
+}
+
+#buttons{
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row;
+}
+
+
+#right-buttons{
+  justify-content: flex-end;
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+
+#read{
+  background-color:#5b7c99;
+  color: #FFFFFF;
+}
+
