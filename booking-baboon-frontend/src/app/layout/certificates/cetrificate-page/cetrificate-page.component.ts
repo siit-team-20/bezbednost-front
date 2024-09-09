@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CertificateService } from '../services/certificate.service';
 import { Certificate } from '../models/certificate';
-import { CertificateExtension } from '../models/certifacte.extension';
 import { CertificateRequest } from '../models/certificate-request';
 import { CertificateRequestStatus } from '../models/certificate-request-status';
 import { CertificateRequestService } from '../services/certificate-request.service';
@@ -51,7 +50,7 @@ certificates!: Certificate[];
 
 
   ngOnInit() {
-    this.loadRoot()
+    // this.loadRoot()
   }
 
   load(): void {
@@ -73,7 +72,6 @@ certificates!: Certificate[];
   loadCerts(): void {
     this.certificateService.getAll().subscribe({
       next: (data: Certificate) => {
-        console.log(data)
         const certificate: Certificate = {
           serialNumber: data.serialNumber,
           signatureAlgorithm: data.signatureAlgorithm,
@@ -90,6 +88,7 @@ certificates!: Certificate[];
         this.aliases = [];
         this.getAliases([certificate]);
         console.log(this.aliases);
+        this.rootCertificate = certificate;
       }
     })
   }

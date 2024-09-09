@@ -19,16 +19,16 @@ export class CertificateCardComponent {
   }
   
 
-  loadChildren(): void {
-    this.certificateService.getAllChildren(this.certificate.alias).subscribe({
-      next: (data: Certificate[]) => {
-        this.children = data;
-      },
-      error: (_) => {
-        console.log("Error!");
-      }
-    });
-  }
+  // loadChildren(): void {
+  //   this.certificateService.getAllChildren(this.certificate.alias).subscribe({
+  //     next: (data: Certificate[]) => {
+  //       this.children = data;
+  //     },
+  //     error: (_) => {
+  //       console.log("Error!");
+  //     }
+  //   });
+  // }
 
 
   parseSimpleDate(dateString: string): string {
@@ -56,7 +56,7 @@ export class CertificateCardComponent {
   toggleDropdown() {
     this.isDropped = !this.isDropped;
     if(this.isDropped){
-      this.loadChildren()
+      this.children = this.certificate.children;
     } else {
       this.children = [];
     }
