@@ -36,10 +36,6 @@ export class LoginComponent {
           localStorage.setItem('user', response.jwt);
           this.authService.setUser();
           this.initializeWebSocket();
-          if (this.authService.getRole() == "CERTADMIN") {
-            this.router.navigate(['certificates']);
-            return;
-          }
           this.router.navigate(['accommodations']);
         },error:() => {
           this.loginFailed = true;

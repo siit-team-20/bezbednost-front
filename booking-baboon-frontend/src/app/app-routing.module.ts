@@ -179,7 +179,7 @@ const routes: Routes = [
     component: CetrificatePageComponent,
     path: 'certificates',
     canActivate: [AuthGuard],
-    data: {role: ['CERTADMIN']}
+    data: {role: ['ADMIN']}
   },
 ];
 
