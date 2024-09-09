@@ -1,5 +1,12 @@
 <div class="background-img">
-    <div class="wrapper">
-      <app-navbar> </app-navbar>
+  <div class="wrapper">
+    <app-navbar> </app-navbar>
+    <div>
+      <h1>Certificates</h1>
     </div>
+    <div class="overlay">
+      <app-certificate-card [certificate]="rootCertificate"></app-certificate-card>
+     <!-- <app-certificate-cards [certificates] = "certificates" ></app-certificate-cards> -->
+    </div>
+  </div>
 </div>

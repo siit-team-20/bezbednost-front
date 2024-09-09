@@ -15,5 +15,6 @@ export class CertificateCardsComponent {
   constructor(private certificateService: CertificateService, private authService: AuthService) {
 
   }
-  
+  ngOnInit(): void {
+  }
 }
