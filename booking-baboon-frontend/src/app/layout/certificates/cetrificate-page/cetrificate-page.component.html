@@ -1,9 +1,16 @@
 <div class="background-img">
-    <div class="wrapper">
-      <app-navbar> </app-navbar>
+  <div class="wrapper">
+    <app-navbar> </app-navbar>
+    <div>
+      <h1>Certificates</h1>
+    </div>
+    <div class="overlay">
+      <app-certificate-card [certificate]="rootCertificate"></app-certificate-card>
+     <!-- <app-certificate-cards [certificates] = "certificates" ></app-certificate-cards> -->
+    </div>
       <button (click)="submit()">Dodaj</button>
       <button (click)="load()">Load</button>
       <button (click)="approve()">Approve</button>
       <button (click)="loadCerts()">Load Certs</button>
-    </div>
+  </div>
 </div>

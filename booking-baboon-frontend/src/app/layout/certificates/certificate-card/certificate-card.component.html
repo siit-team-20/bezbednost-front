@@ -1,1 +1,37 @@
-<p>certificate-card works!</p>
+<div *ngIf="certificate" id="container" class="card">
+    <!-- Dropdown toggle button -->
+    <div class="toggle-dropdown-icon" (click)="toggleDropdown()">
+      <i class="bi" [ngClass]="isDropped ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+    </div>
+  
+    <!-- Certificate Content -->
+    <div class="content card-body">
+      <div class="top-section">
+        <span class="certificate-alias">{{certificate.alias}}</span>
+        <div class="certificate-dates">{{parseSimpleDate(certificate.startDate)}} - {{parseSimpleDate(certificate.endDate)}}</div>
+      </div>
+  
+      <!-- Extensions List -->
+      <div class="extensions">
+        <span *ngFor="let extension of certificate.extensions" class="badge bg-secondary m-1">{{extension}}</span>
+      </div>
+  
+      <!-- Bottom Section with Subject and Buttons -->
+      <div class="bottom-section mt-3">
+        <div class="subject-section">
+          <span>{{certificate.subject.commonName}}, {{certificate.subject.organization}}, {{certificate.subject.organizationalUnit}}</span>
+        </div>
+        
+        <!-- Buttons: Validate, Issue, Revoke -->
+        <div class="buttons mt-3">
+          <button class="btn btn-outline-secondary" (click)="onValidateClicked()">Validate</button>
+          <button class="btn btn-primary" (click)="onIssueClicked()">Issue</button>
+          <button class="btn btn-danger" (click)="onRevokeClicked()">Revoke</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Nested certificates if children exist -->
+  <app-certificate-cards *ngIf="children && children.length > 0" [certificates]="children" class="nested-certificates"></app-certificate-cards>
+  

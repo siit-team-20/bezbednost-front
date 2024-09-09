@@ -1,0 +1,73 @@
+#container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    border-radius: 20px;
+    color: #262626;
+    background-color: white;
+    box-shadow: 5px 5px 10px #ccc, 0px 5px 10px #ccc, -5px 5px 10px #ccc; /* Increased blur radius to 10px */
+  }
+  
+  .content{
+    width: 100%;
+  }
+  
+  .certificate-alias{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .extensions{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    gap: 10px;
+    color: #767676;
+  }
+  
+  .top-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .issue-button{
+    color: white;
+  }
+  
+  .validate-button{
+    border: 2px solid #e5e5e5;
+  }
+  
+  .bottom-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .toggle-dropdown-icon {
+    width: 40px; /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    border-radius: 50%; /* Makes it a circle */
+    background-color: #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  
+  .toggle-dropdown-icon:hover {
+    background-color: lightgrey;
+  }

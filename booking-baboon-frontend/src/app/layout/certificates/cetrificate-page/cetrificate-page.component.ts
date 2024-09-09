@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CertificateService } from '../services/certificate.service';
+import { Certificate } from '../models/certificate';
+import { CertificateExtension } from '../models/certifacte.extension';
 import { CertificateRequest } from '../models/certificate-request';
 import { CertificateRequestStatus } from '../models/certificate-request-status';
 import { CertificateRequestService } from '../services/certificate-request.service';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
-import { CertificateService } from '../services/certificate.service';
-import { Certificate } from '../models/certificate';
 import { CreateCertificate } from '../models/create-certificate';
 import { X500Name } from '../models/x500-name';
 
@@ -13,11 +14,45 @@ import { X500Name } from '../models/x500-name';
   templateUrl: './cetrificate-page.component.html',
   styleUrls: ['./cetrificate-page.component.css']
 })
-export class CetrificatePageComponent {
+export class CetrificatePageComponent implements OnInit {
 
   aliases: string[] | undefined;
+  rootCertificate!: Certificate;
+
+
+certificates!: Certificate[];
+
+  // Define a dummy object for testing
+  // dummyCertificate: Certificate = {
+  //   startDate: new Date(),
+  //   endDate: new Date(),
+  //   extensions: [
+  //     CertificateExtension.BASIC_CONSTRAINT,
+  //     CertificateExtension.DIGITAL_SIGNATURE
+  //   ],
+  //   subject: {
+  //     commonName: 'John Doe',
+  //     surname: 'Doe',
+  //     givenName: 'John',
+  //     organization: 'Example Corp',
+  //     organizationalUnit: 'IT Department',
+  //     country: 'USA',
+  //     email: 'john@example.com',
+  //     userId: 'johndoe123'
+  //   },
+  //   alias: 'test',
+  // };
+
+  // // Define an array of dummy objects for testing
+  // certificates: Certificate[] = [this.dummyCertificate, this.dummyCertificate];
+
 
   constructor(private certificateRequestService: CertificateRequestService, private certificateService: CertificateService, private authService: AuthService) {}
+
+
+  ngOnInit() {
+    this.loadRoot()
+  }
 
   load(): void {
     this.certificateRequestService.getAll().subscribe({
@@ -101,6 +136,18 @@ export class CetrificatePageComponent {
         }
       }
     })
+  }
+
+  loadRoot(): void {
+    this.certificateService.get("root").subscribe({
+      next: (data: Certificate) => {
+        this.rootCertificate = data;
+
+      },
+      error: (_) => {
+        console.log("Error!");
+      }
+    });
   }
 
 }
