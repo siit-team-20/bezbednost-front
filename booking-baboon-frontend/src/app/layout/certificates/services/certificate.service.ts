@@ -9,11 +9,13 @@ import { Certificate } from '../models/certificate';
 })
 export class CertificateService {
 
+  root = 'certificates';
+
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(): Observable<Certificate[]> {
-    return this.httpClient.get<Certificate[]>(environment.apiHost + 'certificates')
+  getAll(): Observable<Certificate> {
+    return this.httpClient.get<Certificate>(environment.apiHost + this.root)
   }
   
 }
