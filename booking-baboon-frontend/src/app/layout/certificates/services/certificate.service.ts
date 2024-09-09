@@ -10,11 +10,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CertificateService {
 
+  root = 'certificates';
+
 
   constructor(private httpClient: HttpClient){}
 
-  getAllChildren(alias : string): Observable<Certificate[]> {
-    return this.httpClient.get<Certificate[]>(environment.apiHost + 'certificates/' + alias + '/children')
+  getAll(): Observable<Certificate> {
+    return this.httpClient.get<Certificate>(environment.apiHost + this.root)
   }
 
   get(alias: string): Observable<Certificate> {

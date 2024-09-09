@@ -1,11 +1,14 @@
-import { CertificateExtension } from "./certifacte.extension";
-import { Subject } from "./subject";
+import { X500Name } from "./x500-name";
 
 export interface Certificate {
-    alias: string;
-    subject: Subject;
-    startDate: string;
-    endDate: string;
-    extensions: CertificateExtension[]; 
-    
+    serialNumber: string,
+    signatureAlgorithm: string,
+    issuer: X500Name,
+    startDate: Date,
+    endDate: Date,
+    subject: X500Name,
+    extensions: string[],
+    endEntity: boolean,
+    root: boolean,
+    children: Certificate[],
 }
