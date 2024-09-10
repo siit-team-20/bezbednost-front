@@ -1,0 +1,18 @@
+#dialog-holder {
+    width: 50vw;
+    max-height: 75vh;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(243, 243, 243, 1);
+    color: black;
+    font-size: 1.4em;
+  }
+  
+  .form-holder {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+  }

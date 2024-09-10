@@ -146,6 +146,7 @@ import { CetrificatePageComponent } from './certificates/cetrificate-page/cetrif
 import { CertificateRequestCardComponent } from './certificates/certificate-request-card/certificate-request-card.component';
 import { CertificateRequestCardsComponent } from './certificates/certificate-request-cards/certificate-request-cards.component';
 import { CertificateRequestPageComponent } from './certificates/certificate-request-page/certificate-request-page.component';
+import { AcceptCertificateRequestComponent } from './certificates/accept-certificate-request/accept-certificate-request.component';
 
 
 @NgModule({
@@ -221,7 +222,8 @@ import { CertificateRequestPageComponent } from './certificates/certificate-requ
     CetrificatePageComponent,
     CertificateRequestCardComponent,
     CertificateRequestCardsComponent,
-    CertificateRequestPageComponent
+    CertificateRequestPageComponent,
+    AcceptCertificateRequestComponent
   ],
   exports: [
     NavbarComponent,

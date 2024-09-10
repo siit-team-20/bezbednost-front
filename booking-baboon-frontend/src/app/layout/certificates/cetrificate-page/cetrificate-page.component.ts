@@ -7,7 +7,7 @@ import { CertificateRequestService } from '../services/certificate-request.servi
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { CreateCertificate } from '../models/create-certificate';
 import { X500Name } from '../models/x500-name';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cetrificate-page',
@@ -18,9 +18,12 @@ export class CetrificatePageComponent implements OnInit {
 
   aliases: string[] | undefined;
   rootCertificate!: Certificate;
+  isFormValid!: boolean;
+  x500Name!: X500Name;
 
+  certificateForm!: FormGroup;
 
-certificates!: Certificate[];
+  certificates!: Certificate[];
 
   // Define a dummy object for testing
   // dummyCertificate: Certificate = {
@@ -54,11 +57,11 @@ certificates!: Certificate[];
     domain: ''
   };
 
-  constructor(private certificateRequestService: CertificateRequestService, private certificateService: CertificateService) {}
+  constructor(private certificateRequestService: CertificateRequestService, private certificateService: CertificateService, 
+    private formBuilder: FormBuilder,) {}
 
 
  
-
   newCertificate(): void {
     console.log('Certificate data:', this.certificate);
     // You can add logic here to send the data to your server or handle it as needed
@@ -66,7 +69,18 @@ certificates!: Certificate[];
 
 
   ngOnInit() {
-    // this.loadRoot()
+    this.loadCerts();
+
+    this.certificateForm = this.formBuilder.group({
+      organization: new FormControl('',[Validators.required]),
+      organizationalUnit: new FormControl('',[Validators.required]),
+      location: new FormControl('',[Validators.required]),
+      state: new FormControl('',[Validators.required]),
+      country: new FormControl('',[Validators.required]),
+    });
+    this.certificateForm.valueChanges.subscribe(() => {
+      this.isFormValid = this.certificateForm.valid;
+    });
   }
 
   load(): void {
