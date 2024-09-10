@@ -9,6 +9,20 @@
     background-color: #ffffff;
 }
 
+.data {
+    color:rgba(0, 0, 0, 1);
+    text-align:left;
+    font-size:20px;
+    letter-spacing:0;
+  }
+
+  .data-label {
+    color:rgba(0, 0, 0, 1);
+    text-align:left;
+    font-size:16px;
+    letter-spacing:0;
+  }
+
 /* Top section styling */
 .top-section {
     border-bottom: 1px solid #dee2e6;
@@ -21,17 +35,6 @@
     color: #343a40;
 }
 
-/* Extensions styling (commented out) */
-/* .extensions {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.badge {
-    font-size: 0.875rem;
-} */
-
-/* Bottom section styling */
 .bottom-section {
     padding-top: 15px;
 }
@@ -59,6 +62,15 @@
     background-color: #007bff;
     color: #ffffff;
 }
+
+.btn-warn {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+#saveChanges {
+    color: white;
+  }
 
 .btn-primary:hover {
     background-color: #0056b3;

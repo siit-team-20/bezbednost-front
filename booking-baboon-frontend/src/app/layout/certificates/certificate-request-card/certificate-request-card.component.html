@@ -1,12 +1,7 @@
-<div *ngIf="certificateRequest" id="container" class="card p-5 ">
+<!--<div *ngIf="certificateRequest" id="container" class="card p-5 ">
     <div class="top-section ">
       <h5 class="certificate-alias">{{certificateRequest.subjectCommonName}} </h5>
-      <!-- <p class="certificate-dates">{{parseSimpleDate(certificateRequest.startDate)}} - {{parseSimpleDate(certificateRequest.endDate)}}</p> -->
     </div>
-  
-    <!-- <div class="extensions my-2">
-      <span *ngFor="let extension of certificateRequest.extensions" class="badge bg-secondary mx-1">{{extension}}</span>
-    </div> -->
   
     <div class="bottom-section mt-3">
       <div class="subject-section mb-3">
@@ -15,14 +10,43 @@
       </div>
   
       <div class="buttons">
-        <button class="btn btn-primary me-2" (click)="onApproveClicked()">Approve</button>
+        <button class="btn btn-primary me-2" (click)="onApproveClicked('250','250')">Approve</button>
         <button class="btn btn-danger" (click)="onDenyClicked()">Deny</button>
       </div>
     </div>
+  </div> 
+-->
+<div *ngIf="certificateRequest" id="container" class="card p-5 ">
+
+  <div id="content-holder" class="flex-row p-5">
+      <div id="id-holder">{{certificateRequest.id}}</div>
+      <div id="subject-details-holder" class="flex-column data">
+        <div class="top-section ">
+
+          Subject information: {{certificateRequest.subjectCommonName}}
+        </div>
+        <div class="bottom-section mt-3">
+          <div class="subject-section mb-3">
+
+            <p>Email: {{certificateRequest.subjectEmail}}</p>
+            <p>Organization: {{certificateRequest.subjectOrganization}}, Unit: {{certificateRequest.subjectOrganizationUnit}}</p>
+            <p>Location: {{certificateRequest.subjectCountry}}, {{certificateRequest.subjectState}}, {{certificateRequest.subjectLocation}}</p>
+            
+          </div>
+        </div>
+      </div>
+    <div id="buttons" class="flex-row">
+      <hr>
+      <button mat-raised-button id="saveChanges" color="primary"
+              (click)="onApproveClicked('250ms', '250ms')">
+        Accept
+      </button>
+      <button mat-raised-button color="warn"
+              (click)="onDenyClicked()">
+        Decline
+      </button>
+    </div>
   </div>
   
-
-
-
-  
+  <app-snack-bar />
   

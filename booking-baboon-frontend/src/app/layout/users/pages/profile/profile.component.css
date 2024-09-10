@@ -96,6 +96,9 @@
 #changePassword {
   color: white;
 }
+#submitRequest {
+  color: white;
+}
 .container-no-space {
   display:flex;
   justify-content: space-between;

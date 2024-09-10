@@ -15,7 +15,11 @@ import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReviewReport} from "../../../reports/models/review-report.model";
 import {Admin} from "../../models/admin.model";
+import { Certificate } from 'src/app/layout/certificates/models/certificate';
 import {AdminService} from "../../services/admin.service";
+import { CertificateRequestService } from 'src/app/layout/certificates/services/certificate-request.service';
+import { CertificateRequestStatus } from 'src/app/layout/certificates/models/certificate-request-status';
+import { CertificateRequest } from 'src/app/layout/certificates/models/certificate-request';
 
 
 @Component({
@@ -27,7 +31,9 @@ export class ProfileComponent {
   userType: string = 'guest';
   profileForm!: FormGroup;
   passwordForm!: FormGroup;
+  certificateRequestForm !: FormGroup;
   isFormValid!: boolean;
+  isRequestValid!:boolean;
   isPasswordFormValid!: boolean;
   editModes: { [key: string]: boolean } = {
     email: true,
@@ -70,9 +76,12 @@ export class ProfileComponent {
               private sharedService: SharedService,
               private authService: AuthService,
               private formBuilder: FormBuilder,
+              private formBuilder1: FormBuilder,
+              private certificateRequestService: CertificateRequestService,
               private router: Router) {
   }
   ngOnInit(): void {
+
     this.route.params.subscribe(params => {
       const userId: number = params['userId'];
       /*this.newPassword = "";
@@ -122,6 +131,7 @@ export class ProfileComponent {
 
     });
   }
+
   initializeForm(): void {
     this.profileForm = this.formBuilder.group({
       email: [this.user?.email || '', [Validators.required, Validators.email]],
@@ -136,6 +146,14 @@ export class ProfileComponent {
       newPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
     });
+    
+    this.certificateRequestForm = this.formBuilder.group({
+      organization: new FormControl('',[Validators.required]),
+      organizationalUnit: new FormControl('',[Validators.required]),
+      location: new FormControl('',[Validators.required]),
+      state: new FormControl('',[Validators.required]),
+      country: new FormControl('',[Validators.required]),
+    });
 
     this.profileForm.valueChanges.subscribe(() => {
       this.isFormValid = this.profileForm.valid;
@@ -144,7 +162,47 @@ export class ProfileComponent {
     this.passwordForm.valueChanges.subscribe(() => {
       this.isPasswordFormValid = this.passwordForm.valid;
     });
+    
+    this.certificateRequestForm.valueChanges.subscribe(() => {
+      this.isRequestValid = this.certificateRequestForm.valid;
+    });
+
   }
+
+  submitRequest() {
+    
+    if (this.user != undefined) {
+
+      const request: CertificateRequest = {
+        subjectEmail: this.user.email + "", 
+        subjectCommonName: this.user.firstName + " " + this.user.lastName,
+        subjectOrganization: this.certificateRequestForm.get('organization')?.value,
+        subjectOrganizationUnit: this.certificateRequestForm.get('organizationalUnit')?.value,
+        subjectLocation: this.certificateRequestForm.get('location')?.value,
+        subjectState: this.certificateRequestForm.get('state')?.value,
+        subjectCountry: this.certificateRequestForm.get('country')?.value,
+        status: CertificateRequestStatus.WAITING 
+      };
+
+      if (this.isRequestValid) {
+
+        this.certificateRequestService.create(request).subscribe({
+          next: (data: CertificateRequest) => {
+            if(data !== null){
+              console.log(data);
+              this.sharedService.openSnack("Certificate request has been created successfully");
+            }
+          },
+          error:(_) => {
+            console.error('Error submitting request:');
+          }
+      });
+      } else {
+        console.error('Form is invalid. Please fill in all required fields.');
+      }
+    }
+  }
+
 
   deleteProfile(): void {
 
