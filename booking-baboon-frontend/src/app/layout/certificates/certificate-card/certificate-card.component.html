@@ -1,13 +1,15 @@
 <div *ngIf="certificate" id="container" class="card">
     <!-- Dropdown toggle button -->
     <div class="toggle-dropdown-icon" (click)="toggleDropdown()">
-      <i class="bi" [ngClass]="isDropped ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
-    </div>
+        <i class="bi" [ngClass]="isDropped ? 'bi-dash' : 'bi-plus'"></i>
+      </div>
+      <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon>
   
     <!-- Certificate Content -->
     <div class="content card-body">
       <div class="top-section">
-        <span class="certificate-alias">{{certificate.serialNumber}}</span>
+        <!-- , {{certificate.issuer}} ispisuje [Object object] kada se doda -->
+        <span class="certificate-alias">{{certificate.serialNumber}}, {{certificate.subject.organization}}</span>
         <div class="certificate-dates">{{certificate.startDate}} - {{certificate.endDate}}</div>
       </div>
   
