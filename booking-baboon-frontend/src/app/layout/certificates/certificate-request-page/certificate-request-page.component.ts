@@ -29,7 +29,7 @@ export class CertificateRequestPageComponent implements OnInit {
   }
   
   load(): void {
-    this.certificateRequestService.getAll().subscribe({
+    this.certificateRequestService.getAllWaiting().subscribe({
       next: (data: CertificateRequest[]) => {
         this.certificateRequests = data;
         console.log(data);

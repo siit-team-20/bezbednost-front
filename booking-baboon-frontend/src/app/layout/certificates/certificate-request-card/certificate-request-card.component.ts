@@ -28,8 +28,8 @@ export class CertificateRequestCardComponent {
         subject: {
           email: this.certificateRequest?.subjectEmail,
           commonName: this.certificateRequest?.subjectCommonName,
-          organisationalUnit: this.certificateRequest?.subjectOrganizationUnit,
-          organisation: this.certificateRequest?.subjectOrganization,
+          organizationalUnit: this.certificateRequest?.subjectOrganizationUnit,
+          organization: this.certificateRequest?.subjectOrganization,
           location: this.certificateRequest?.subjectLocation,
           state: this.certificateRequest?.subjectState,
           country: this.certificateRequest?.subjectCountry,
