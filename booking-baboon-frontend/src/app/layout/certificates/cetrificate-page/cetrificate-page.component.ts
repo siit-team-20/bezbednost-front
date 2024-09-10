@@ -109,6 +109,29 @@ certificates!: Certificate[];
     })
   }
 
+  addCert(): void {
+    const subject: X500Name = {
+      email: 'test@gmail.com',
+      commonName: 'Test Test',
+      organization: 'FTN',
+      organizationalUnit: 'SIIT',
+      location: 'Novi Sad',
+      state: 'Vojvodina',
+      country: 'Srbija'
+    }
+    const certificate: CreateCertificate = {
+      certificateType: 'Intermediate',
+      alias: 'andrija.slovic1@gmail.com|191d96185c4',
+      subject: subject,
+      domain: null
+    }
+    this.certificateService.create(certificate).subscribe({
+      next: (data: CreateCertificate) => {
+        console.log(data)
+      }
+    })
+  }
+
   approve(): void {
     const subject: X500Name = {
       email: 'andrija.slovic13@gmail.com',
