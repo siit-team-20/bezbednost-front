@@ -18,6 +18,10 @@ export class CertificateRequestService {
     return this.httpClient.get<CertificateRequest[]>(environment.apiHost + this.root);
   } 
 
+  getAllWaiting(): Observable<CertificateRequest[]> {
+    return this.httpClient.get<CertificateRequest[]>(environment.apiHost + this.root + "/waiting");
+  } 
+
   create(request: CertificateRequest) : Observable<CertificateRequest> {
     return this.httpClient.post<CertificateRequest>(environment.apiHost + this.root, request);
   }

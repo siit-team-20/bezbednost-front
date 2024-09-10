@@ -5,96 +5,132 @@
       <h1>Certificates</h1>
     </div>
     <div class="overlay">
-      <app-certificate-card [certificate]="rootCertificate"></app-certificate-card>
+      <app-certificate-card [certificate]="rootCertificate" (certificateSelected)="onCertificateSelected($event)"></app-certificate-card>
      <!-- <app-certificate-cards [certificates] = "certificates" ></app-certificate-cards> -->
     </div>
       <button (click)="submit()">Dodaj</button>
-      <button (click)="load()">Load</button>
       <button (click)="approve()">Approve</button>
       <button (click)="loadCerts()">Load Certs</button>
       <button (click)="addCert()">Add Cert</button>
   </div>
 
 
-  <form  #certificateForm="ngForm" >
+  <form [formGroup]="certificateForm" >
     <div class="form-group">
       <label for="certificateType">Certificate Type:</label>
       <div class="radio-group">
         <div class="form-check">
           <input
             type="radio"
-            id="type1"
-            name="certificateType"
-            value="Type1"
-            [(ngModel)]="certificate.type"
+            id="Https"
+            formControlName="certificateType"
+            value="Https"
             class="form-check-input"
             required
           />
-          <label for="type1" class="form-check-label">Type 1</label>
+          <label for="Https" class="form-check-label">Https</label>
         </div>
         <div class="form-check">
           <input
             type="radio"
-            id="type2"
-            name="certificateType"
-            value="Type2"
-            [(ngModel)]="certificate.type"
+            id="Digital Signing"
+            formControlName="certificateType"
+            value="Digital Signing"
             class="form-check-input"
             required
           />
-          <label for="type2" class="form-check-label">Type 2</label>
+          <label for="Digital Signing" class="form-check-label">Digital Signing</label>
         </div>
         <div class="form-check">
           <input
             type="radio"
-            id="type3"
-            name="certificateType"
-            value="Type3"
-            [(ngModel)]="certificate.type"
+            id="Intermediate"
+            formControlName="certificateType"
+            value="Intermediate"
             class="form-check-input"
             required
           />
-          <label for="type3" class="form-check-label">Type 3</label>
+          <label for="Intermediate" class="form-check-label">Intermediate</label>
         </div>
       </div>
     </div>
   
     <div class="form-group">
-      <label for="alias">Alias:</label>
+      <label for="email">Email:</label>
       <input
-        type="text"
-        id="alias"
-        name="alias"
-        [(ngModel)]="certificate.alias"
+        type="email"
+        id="email"
+        formControlName="email"
         class="form-control"
         required
       />
     </div>
   
     <div class="form-group">
-      <label for="subject">Subject:</label>
+      <label for="commonName">Common Name:</label>
       <input
         type="text"
-        id="subject"
-        name="subject"
-        [(ngModel)]="certificate.subject"
+        id="commonName"
+        formControlName="commonName"
         class="form-control"
         required
       />
     </div>
   
     <div class="form-group">
-      <label for="domain">Domain:</label>
+      <label for="organization">Organization:</label>
       <input
         type="text"
-        id="domain"
-        name="domain"
-        [(ngModel)]="certificate.domain"
+        id="organization"
+        formControlName="organization"
         class="form-control"
         required
       />
     </div>
   
-    <button type="submit" (click)="newCertificate()" class="btn btn-primary">Create Certificate</button>
+    <div class="form-group">
+      <label for="organizationUnit">Organization Unit:</label>
+      <input
+        type="text"
+        id="organizationUnit"
+        formControlName="organizationUnit"
+        class="form-control"
+        required
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input
+        type="text"
+        id="location"
+        formControlName="location"
+        class="form-control"
+        required
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="state">State:</label>
+      <input
+        type="text"
+        id="state"
+        formControlName="state"
+        class="form-control"
+        required
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input
+        type="text"
+        id="country"
+        formControlName="country"
+        class="form-control"
+        required
+      />
+    </div>
+  
+    <button type="submit" (ngSubmit)="addCert()" class="btn btn-primary">Create Certificate</button>
   </form>
-  
