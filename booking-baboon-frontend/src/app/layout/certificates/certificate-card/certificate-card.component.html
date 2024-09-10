@@ -1,8 +1,9 @@
 <div *ngIf="certificate" id="container" class="card">
     <!-- Dropdown toggle button -->
     <div class="toggle-dropdown-icon" (click)="toggleDropdown()">
-        <i class="bi" [ngClass]="isDropped ? 'bi-dash' : 'bi-plus'"></i>
-      </div>
+      <i class="bi" [ngClass]="isDropped ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
+    </div>
+    
       <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon>
   
     <!-- Certificate Content -->

@@ -1,6 +1,6 @@
 <div id="certificates-list">
     <div *ngFor="let certificate of certificates" id="cards">
-      <app-certificate-card [certificate]="certificate"></app-certificate-card>
+      <app-certificate-card [certificate]="certificate" (certificateSelected)="onCertificateSelected($event)"></app-certificate-card>
     </div>
 </div>
   

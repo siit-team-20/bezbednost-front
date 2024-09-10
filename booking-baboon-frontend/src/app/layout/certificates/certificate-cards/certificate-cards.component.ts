@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { CertificateService } from '../services/certificate.service';
 import { Certificate } from '../models/certificate';
@@ -11,10 +11,16 @@ import { Certificate } from '../models/certificate';
 export class CertificateCardsComponent {
 
   @Input() public certificates!: Certificate[];
+  @Output() certificateSelected: EventEmitter<Certificate> = new EventEmitter<Certificate>();
+
+
 
   constructor(private certificateService: CertificateService, private authService: AuthService) {
 
   }
   ngOnInit(): void {
+  }
+  onCertificateSelected(certificate: Certificate) {
+    this.certificateSelected.emit(certificate);
   }
 }

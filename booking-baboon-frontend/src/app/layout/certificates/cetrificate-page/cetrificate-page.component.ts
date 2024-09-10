@@ -7,7 +7,8 @@ import { CertificateRequestService } from '../services/certificate-request.servi
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { CreateCertificate } from '../models/create-certificate';
 import { X500Name } from '../models/x500-name';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cetrificate-page',
@@ -19,8 +20,9 @@ export class CetrificatePageComponent implements OnInit {
   aliases: string[] | undefined;
   rootCertificate!: Certificate;
 
+  certificateType="Https"
 
-certificates!: Certificate[];
+  certificates!: Certificate[];
 
   // Define a dummy object for testing
   // dummyCertificate: Certificate = {
@@ -53,28 +55,26 @@ certificates!: Certificate[];
     subject: '',
     domain: ''
   };
-
-  constructor(private certificateRequestService: CertificateRequestService, private certificateService: CertificateService) {}
+  certificateForm!: FormGroup;
+  constructor(private certificateRequestService: CertificateRequestService, private certificateService: CertificateService, private fb: FormBuilder, private http: HttpClient) {}
 
 
  
 
-  newCertificate(): void {
-    console.log('Certificate data:', this.certificate);
-    // You can add logic here to send the data to your server or handle it as needed
-  }
 
+  ngOnInit(): void {
+    this.loadCerts();
 
-  ngOnInit() {
-    // this.loadRoot()
-  }
-
-  load(): void {
-    this.certificateRequestService.getAll().subscribe({
-      next: (data: CertificateRequest[]) => {
-        console.log(data);
-      }
-    })
+    this.certificateForm = this.fb.group({
+      certificateType: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      commonName: ['', Validators.required],
+      organization: ['', Validators.required],
+      organizationUnit: ['', Validators.required],
+      location: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required]
+    });
   }
 
   private getAliases(certificate: Certificate[] | undefined) : void {
@@ -107,6 +107,33 @@ certificates!: Certificate[];
         this.rootCertificate = certificate;
       }
     })
+  }
+
+
+  // newCertificate(): void {
+  //   if (this.certificateForm.valid) {
+  //     this.http.post('/api/certificates', this.certificateForm.value)
+  //       .subscribe(response => {
+  //         console.log('Certificate created successfully', response);
+  //       }, error => {
+  //         console.error('Error creating certificate', error);
+  //       });
+  //   }
+  // }
+
+  fillFormWithCertificateData(certificate: Certificate) {
+    this.certificateForm.patchValue({
+      email: certificate.subject.email,
+      commonName: certificate.subject.commonName,
+      organization: certificate.subject.organization,
+      organizationUnit: certificate.subject.organizationalUnit,
+      location: certificate.subject.location,
+      state: certificate.subject.state,
+      country: certificate.subject.country,
+    });
+  }
+  onCertificateSelected(certificate: Certificate) {
+    this.fillFormWithCertificateData(certificate); // Make sure this is handling the correct type
   }
 
   addCert(): void {

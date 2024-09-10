@@ -18,6 +18,10 @@ export class CertificateRequestService {
     return this.httpClient.get<CertificateRequest[]>(environment.apiHost + this.root);
   } 
 
+  getAllWaiting(): Observable<CertificateRequest[]> {
+    return this.httpClient.get<CertificateRequest[]>(environment.apiHost + this.root + "/waiting");
+  } 
+
   create(request: CertificateRequest) : Observable<CertificateRequest> {
     return this.httpClient.post<CertificateRequest>(environment.apiHost + this.root, request);
   }
@@ -26,7 +30,7 @@ export class CertificateRequestService {
     return this.httpClient.put<CertificateRequest>(environment.apiHost + this.root + "/" + id + "/approve", certificate);
   }
 
-  // deny(id: number, certificate: CreateCertificate): Observable<CertificateRequest> {
-  //   return this.httpClient.put<CertificateRequest>(environment.apiHost + this.root + "/" + id + "/deny", certificate);
-  // }
+  deny(id: number): Observable<CertificateRequest> {
+    return this.httpClient.put<CertificateRequest>(environment.apiHost + this.root + "/" + id + "/reject",{});
+  }
 }

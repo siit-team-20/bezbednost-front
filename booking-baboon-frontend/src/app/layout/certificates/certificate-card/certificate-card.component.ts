@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Certificate } from '../models/certificate';
 import { CertificateService } from '../services/certificate.service';
 
@@ -13,6 +13,7 @@ export class CertificateCardComponent {
   certificate!: Certificate;
   children! : Certificate []
   isDropped = false;
+  @Output() certificateSelected: EventEmitter<Certificate> = new EventEmitter<Certificate>();
 
   constructor(private certificateService: CertificateService){
 
@@ -42,7 +43,9 @@ export class CertificateCardComponent {
   }
 
   onIssueClicked() {
-
+    if (this.certificate) {
+      this.certificateSelected.emit(this.certificate);
+    }
   }
 
   onRevokeClicked() {

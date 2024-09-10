@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CertificateRequest } from '../models/certificate-request';
 import { CertificateRequestService } from '../services/certificate-request.service';
+import { Certificate } from '../models/certificate';
 
 @Component({
   selector: 'app-certificate-request-page',
@@ -10,38 +11,31 @@ import { CertificateRequestService } from '../services/certificate-request.servi
 export class CertificateRequestPageComponent implements OnInit {
 
   certificateRequests!: CertificateRequest[];
+  protected aliases: string[] | undefined;
 
-  constructor(private certificateRequestService: CertificateRequestService) {
-  }
+  constructor(private certificateRequestService: CertificateRequestService) {}
+
   ngOnInit() {
     this.load()
   }
+  
+  private getAliases(certificateTree: Certificate[] | undefined): void {
+    certificateTree?.forEach((certificate: Certificate): void => {
+      if (certificate.children.length === 0)
+        this.aliases?.push(certificate.issuer.email + "|" + certificate.serialNumber);
+
+      this.getAliases(certificate.children);
+    });
+  }
+  
   load(): void {
-    this.certificateRequestService.getAll().subscribe({
+    this.certificateRequestService.getAllWaiting().subscribe({
       next: (data: CertificateRequest[]) => {
         this.certificateRequests = data;
         console.log(data);
       }
     })
   }
-
-  // load(): void {
-  //   this.certificateRequestService.getAll().subscribe({
-  //     next: (data: CertificateRequest[]) => {
-  //       const certificateRequest: CertificateRequest = {
-  //         subjectEmail: data.subjectEmail,
-  //         subjectCommonName: data.subjectCommonName,
-  //         subjectOrganization: data.subjectOrganization,
-  //         subjectOrganizationUnit: data.subjectOrganizationUnit,
-  //         subjectLocation: data.subjectLocation,
-  //         subjectState: data.subjectState,
-  //         subjectCountry: data.subjectCountry,
-  //         status: data.status
-  //       }
-  //     console.log(certificateRequest);
-  //     }
-  //   })
-  // }
 
 
 }
