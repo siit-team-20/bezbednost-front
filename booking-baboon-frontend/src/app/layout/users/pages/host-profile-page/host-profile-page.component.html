@@ -2,6 +2,84 @@
   <div class="wrapper">
     <app-navbar> </app-navbar>
     <app-host-profile [host]="host"></app-host-profile>
+
+    <!-- certificate form  -->
+
+    <div id="certificate-box" class="container mt-5">
+      <div id="title-section" class="text-center mb-4">
+        <h2>Certificate Form</h2>
+        <p>Enter details</p>
+      </div>
+    
+      <form id="certificate-form" [formGroup]="certificateForm" (submit)="onSubmitClick()">
+        <h3 class="section-title mb-3">Issuer</h3>
+        
+        <div class="mb-3">
+          <label for="issuerAlias" class="form-label">Issuer</label>
+          <input formControlName="issuerAlias" readonly type="text" class="form-control" id="issuerAlias">
+        </div>
+    
+        <!-- <div class="mb-3">
+          <label for="dateRange" class="form-label">Enter a date range</label>
+          <div class="input-group">
+            <input formControlName="startDate" type="date" class="form-control" id="startDate" placeholder="Start date" readonly>
+            <input formControlName="endDate" type="date" class="form-control" id="endDate" placeholder="End date" readonly>
+          </div>
+        </div> -->
+    
+        <h3 class="section-title mb-3">Subject</h3>
+    
+        <div class="mb-3">
+          <label for="alias" class="form-label">Alias</label>
+          <input formControlName="alias" type="text" class="form-control" id="alias">
+        </div>
+    
+        <div formGroupName="subject" class="subject-section">
+          <div class="mb-3">
+            <label for="commonName" class="form-label">Subject Common Name</label>
+            <input formControlName="commonName" type="text" class="form-control" id="commonName">
+          </div>
+    
+          <div class="mb-3">
+            <label for="organization" class="form-label">Subject Organization</label>
+            <input formControlName="organization" type="text" class="form-control" id="organization">
+          </div>
+    
+          <div class="mb-3">
+            <label for="organizationalUnit" class="form-label">Subject Organizational Unit</label>
+            <input formControlName="organizationalUnit" type="text" class="form-control" id="organizationalUnit">
+          </div>
+    
+          <div class="mb-3">
+            <label for="country" class="form-label">Subject Country</label>
+            <input formControlName="country" type="text" class="form-control" id="country">
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Subject location</label>
+            <input formControlName="location" type="text" class="form-control" id="location">
+          </div>
+          <div class="mb-3">
+            <label for="state" class="form-label">Subject state</label>
+            <input formControlName="state" type="text" class="form-control" id="state">
+          </div>
+    
+          <div class="mb-3">
+            <label for="email" class="form-label">Subject Email</label>
+            <input formControlName="email" type="email" class="form-control" id="email">
+          </div>
+
+    
+          
+        </div>
+    
+        <button type="submit" class="btn btn-primary mt-3" id="submit-form-button" [disabled]="!certificateForm.valid">Submit form</button>
+      </form>
+    </div>
+    
+
+
+
+
     
   </div>
 </div>

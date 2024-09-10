@@ -53,6 +53,7 @@ import {
   AdminReviewReportsPageComponent
 } from "./layout/reports/admin-review-reports-page/admin-review-reports-page.component";
 import { CetrificatePageComponent } from './layout/certificates/cetrificate-page/cetrificate-page.component';
+import { CertificateRequestPageComponent } from './layout/certificates/certificate-request-page/certificate-request-page.component';
 
 const routes: Routes = [
   {
@@ -178,6 +179,12 @@ const routes: Routes = [
   {
     component: CetrificatePageComponent,
     path: 'certificates',
+    canActivate: [AuthGuard],
+    data: {role: ['ADMIN']}
+  },
+  {
+    component: CertificateRequestPageComponent,
+    path: 'certificate-request-page',
     canActivate: [AuthGuard],
     data: {role: ['ADMIN']}
   },

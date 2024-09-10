@@ -7,6 +7,7 @@ import { CertificateRequestService } from '../services/certificate-request.servi
 import { AuthService } from 'src/app/infrastructure/auth/auth.service';
 import { CreateCertificate } from '../models/create-certificate';
 import { X500Name } from '../models/x500-name';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cetrificate-page',
@@ -46,7 +47,22 @@ certificates!: Certificate[];
   // certificates: Certificate[] = [this.dummyCertificate, this.dummyCertificate];
 
 
-  constructor(private certificateRequestService: CertificateRequestService, private certificateService: CertificateService, private authService: AuthService) {}
+   certificate = {
+    type: '',
+    alias: '',
+    subject: '',
+    domain: ''
+  };
+
+  constructor(private certificateRequestService: CertificateRequestService, private certificateService: CertificateService) {}
+
+
+ 
+
+  newCertificate(): void {
+    console.log('Certificate data:', this.certificate);
+    // You can add logic here to send the data to your server or handle it as needed
+  }
 
 
   ngOnInit() {

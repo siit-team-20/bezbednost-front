@@ -1,0 +1,86 @@
+.wrapper{
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 2em;
+  }
+  
+  .background-img{
+    background-image: url('../../../../assets/white-background.png');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    height: 100vh;
+  }
+
+ /* General Form Styles */
+/* General Form Styles */
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping if necessary */
+  gap: 1rem; /* Spacing between radio buttons */
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+.form-check-label {
+  margin-right: 1rem;
+  font-weight: 400;
+  color: #333;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+button[type="submit"]:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+

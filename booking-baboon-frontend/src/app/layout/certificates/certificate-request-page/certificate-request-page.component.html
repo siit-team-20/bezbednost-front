@@ -1,0 +1,11 @@
+<div class="background-img">
+    <div class="wrapper">
+      <app-navbar> </app-navbar>
+      <div>
+        <h1>Certificate requests</h1>
+      </div>
+      <div class="overlay">
+        <app-certificate-request-cards *ngIf="certificateRequests" [certificateRequests] = "certificateRequests" ></app-certificate-request-cards>
+      </div>
+    </div>
+  </div>

@@ -25,4 +25,8 @@ export class CertificateRequestService {
   approve(id: number, certificate: CreateCertificate): Observable<CertificateRequest> {
     return this.httpClient.put<CertificateRequest>(environment.apiHost + this.root + "/" + id + "/approve", certificate);
   }
+
+  // deny(id: number, certificate: CreateCertificate): Observable<CertificateRequest> {
+  //   return this.httpClient.put<CertificateRequest>(environment.apiHost + this.root + "/" + id + "/deny", certificate);
+  // }
 }

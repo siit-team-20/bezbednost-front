@@ -143,6 +143,9 @@ import { UserReportsComponent } from './reports/user-reports/user-reports.compon
 import { CertificateCardComponent } from './certificates/certificate-card/certificate-card.component';
 import { CertificateCardsComponent } from './certificates/certificate-cards/certificate-cards.component';
 import { CetrificatePageComponent } from './certificates/cetrificate-page/cetrificate-page.component';
+import { CertificateRequestCardComponent } from './certificates/certificate-request-card/certificate-request-card.component';
+import { CertificateRequestCardsComponent } from './certificates/certificate-request-cards/certificate-request-cards.component';
+import { CertificateRequestPageComponent } from './certificates/certificate-request-page/certificate-request-page.component';
 
 
 @NgModule({
@@ -215,7 +218,10 @@ import { CetrificatePageComponent } from './certificates/cetrificate-page/cetrif
     UserReportsComponent,
     CertificateCardComponent,
     CertificateCardsComponent,
-    CetrificatePageComponent
+    CetrificatePageComponent,
+    CertificateRequestCardComponent,
+    CertificateRequestCardsComponent,
+    CertificateRequestPageComponent
   ],
   exports: [
     NavbarComponent,
