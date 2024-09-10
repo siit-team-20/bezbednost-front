@@ -8,46 +8,23 @@ import {
 import {catchError, Observable, throwError} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {map} from "rxjs/operators";
+import { KeycloakService } from 'src/app/layout/keycloak/keycloak.service';
 @Injectable()
 export class Interceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private keycloakService: KeycloakService) {}
 
   intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-    const accessToken: any = localStorage.getItem('user');
-
-    if (req.headers.get('skip')) return next.handle(req);
-
-    if (accessToken) {
-      const cloned = req.clone({
-        headers: req.headers.set('Authorization', 'Bearer ' + accessToken),
+    request: HttpRequest<any>,
+       next: HttpHandler
+     ): Observable<HttpEvent<any>> {
+    const token = this.keycloakService.keycloak?.token;
+    if (token){
+      const authReq = request.clone({
+        headers: request.headers.set('Authorization', 'Bearer ' + token),
       });
-
-      return next.handle(cloned).pipe(
-        map((event: HttpEvent<any>) => {
-          if (event instanceof HttpResponse) {
-            const isTokenExpired = this.isTokenExpired(event);
-            if (isTokenExpired) {
-              localStorage.removeItem('user');
-              this.authService.setUser();
-            }
-          }
-          return event;
-        }),
-        catchError((error) => {
-          if (error.status === 401 || error.status === 403) {
-            // Token expired or unauthorized, initiate logout
-            localStorage.removeItem('user');
-            this.authService.setUser();
-          }
-
-          return throwError(error);
-        })
-      );
-    } else {
-      return next.handle(req);
+      return next.handle(authReq);
+    }else{
+      return  next.handle(request);
     }
   }
 

@@ -8,6 +8,8 @@ import {Login} from "./model/login.model";
 import {User} from "../../layout/users/models/user.model";
 import {Host} from "../../layout/users/models/host.model";
 import {Guest} from "../../layout/users/models/guest.model";
+import { KeycloakService } from 'src/app/layout/keycloak/keycloak.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +23,9 @@ export class AuthService {
 
   user$ = new BehaviorSubject("");
   userState = this.user$.asObservable();
+  private router: Router = new Router();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private keyCloakService: KeycloakService) {
     this.user$.next(this.getRole());
   }
 
@@ -32,19 +35,27 @@ export class AuthService {
     });
   }
 
-  logout(): Observable<string> {
-    localStorage.removeItem('user');
-    this.setUser();
-    return this.http.get(environment.apiHost + 'users/logout', {
-      responseType: 'text',
-    });
+  async logout() {
+    try {
+      localStorage.removeItem('user');
+      this.setUser();
+
+      await this.keyCloakService.logout();
+
+
+      await this.http.get(environment.apiHost + 'users/logout', { responseType: 'text' }).toPromise();
+      this.router.navigate(['login']);
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   }
 
   getRole(): any {
     if (this.isLoggedIn()) {
       const accessToken: any = localStorage.getItem('user');
       const helper = new JwtHelperService();
-      return helper.decodeToken(accessToken).role[0].authority;
+      console.log(helper.decodeToken(accessToken).realm_access.roles[2]);
+      return helper.decodeToken(accessToken).realm_access.roles[2].toString().toUpperCase();
     }
     return null;
   }
@@ -53,6 +64,7 @@ export class AuthService {
     if(this.isLoggedIn()){
       const accessToken: any = localStorage.getItem('user');
       const helper = new JwtHelperService();
+      console.log(helper.decodeToken(accessToken)["id"])
       return +helper.decodeToken(accessToken)["id"];
     }
     return undefined;
@@ -92,7 +104,7 @@ export class AuthService {
       const accessToken: any = localStorage.getItem('user');
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(accessToken);
-      return decodedToken.sub;
+      return decodedToken.preferred_username;
     }
     return undefined;
   }
